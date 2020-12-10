@@ -85,10 +85,6 @@ class Cryflare::Zone::Endpoint
   end
 
   def self.uri : URI
-    URI.parse("#{Client.base_uri}#{path}")
-  end
-
-  def self.uri : URI
     uri = Client.base_uri
     uri.path = path
     uri
