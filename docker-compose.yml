@@ -1,0 +1,18 @@
+services:
+  crystal: &crystal
+    environment:
+      CLOUDFLARE_EMAIL: ${CLOUDFLARE_EMAIL}
+      CLOUDFLARE_KEY: ${CLOUDFLARE_KEY}
+    image: crystallang/crystal:0.35.1-alpine
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+  shards:
+    <<: *crystal
+    command: 'sh -c "shards update"'
+    depends_on: []
+    environment: {}
+  spec:
+    <<: *crystal
+    command: 'sh -c "crystal spec"'
+version: "2.4"

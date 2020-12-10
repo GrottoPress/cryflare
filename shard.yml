@@ -1,0 +1,14 @@
+name: cryflare
+version: 0.1.0
+description: A low-level API client for Cloudflare® (v4)
+
+authors:
+  - GrottoPress <info@grottopress.com>
+  - N Atta Kusi Adusei <attakusiadusei@gmail.com>
+
+crystal: 0.35.0
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    version: ~> 0.13.0
