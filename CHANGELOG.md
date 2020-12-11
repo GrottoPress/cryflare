@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add `Cryflare::Client`
 - Add *Accounts* endpoint
+- Add *Account Roles* endpoint
 - Add *Zones* endpoint
 - Add *Zone Settings* endpoint
 - Add *DNS Records* endpoint

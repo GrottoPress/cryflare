@@ -9,6 +9,10 @@ Find the complete documentation in the `docs/` directory of this repository.
 ## Todo
 
 - [x] Accounts
+- [ ] Account members
+- [x] Account roles
+- [ ] User
+- [ ] User memberships
 - [x] Zones
 - [x] Zone settings
 - [x] DNS records

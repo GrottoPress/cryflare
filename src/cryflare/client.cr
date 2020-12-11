@@ -43,6 +43,10 @@ class Cryflare::Client
     @accounts ||= Account::Endpoint.new(self)
   end
 
+  def account_roles : AccountRole::Endpoint
+    @account_roles ||= AccountRole::Endpoint.new(self)
+  end
+
   def cloudflare_ips : CloudflareIp::Endpoint
     @cloudflare_ips ||= CloudflareIp::Endpoint.new(self)
   end
