@@ -11,7 +11,7 @@ Find the complete documentation in the `docs/` directory of this repository.
 - [x] Accounts
 - [ ] Account members
 - [x] Account roles
-- [ ] User
+- [x] User
 - [ ] User memberships
 - [x] User organizations
 - [x] Zones
