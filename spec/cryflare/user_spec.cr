@@ -32,7 +32,7 @@ describe Cryflare::User::Endpoint do
 
       client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
 
-      client.users.update(first_name: "John") do |response|
+      client.user.update(first_name: "John") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::User)
       end
@@ -69,7 +69,7 @@ describe Cryflare::User::Endpoint do
 
       client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
 
-      client.users.show do |response|
+      client.user.show do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::User)
       end
