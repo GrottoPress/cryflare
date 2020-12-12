@@ -43,6 +43,10 @@ class Cryflare::Client
     @accounts ||= Account::Endpoint.new(self)
   end
 
+  def account_members : AccountMember::Endpoint
+    @account_members ||= AccountMember::Endpoint.new(self)
+  end
+
   def account_roles : AccountRole::Endpoint
     @account_roles ||= AccountRole::Endpoint.new(self)
   end
