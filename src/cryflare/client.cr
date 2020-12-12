@@ -55,6 +55,10 @@ class Cryflare::Client
     @dns_records ||= DnsRecord::Endpoint.new(self)
   end
 
+  def user_organizations : UserOrganization::Endpoint
+    @user_organizations ||= UserOrganization::Endpoint.new(self)
+  end
+
   def zones : Zone::Endpoint
     @zones ||= Zone::Endpoint.new(self)
   end

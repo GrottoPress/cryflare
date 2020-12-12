@@ -13,6 +13,7 @@ Find the complete documentation in the `docs/` directory of this repository.
 - [x] Account roles
 - [ ] User
 - [ ] User memberships
+- [x] User organizations
 - [x] Zones
 - [x] Zone settings
 - [x] DNS records
