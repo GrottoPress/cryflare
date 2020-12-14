@@ -3,6 +3,6 @@ struct Cryflare::Account
 
   getter id : String
   getter name : String
-  getter settings : Setting?
+  getter settings : Settings?
   getter created_on : Time?
 end
