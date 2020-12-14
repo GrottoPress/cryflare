@@ -71,6 +71,10 @@ class Cryflare::Client
     @zones ||= Zone::Endpoint.new(self)
   end
 
+  def zone_access_rules
+    @zone_access_rules ||= ZoneAccessRule::Endpoint.new(self)
+  end
+
   def zone_settings : ZoneSetting::Endpoint
     @zone_settings ||= ZoneSetting::Endpoint.new(self)
   end

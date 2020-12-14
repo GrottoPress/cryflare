@@ -16,5 +16,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add *User Organizations* endpoint
 - Add *Zones* endpoint
 - Add *Zone Settings* endpoint
+- Add *Zone Firewall Access Rule* endpoint
 - Add *DNS Records* endpoint
 - Add *Cloudflare IPs* endpoint
