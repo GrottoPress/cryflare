@@ -76,7 +76,7 @@ See https://api.cloudflare.com/#account-level-firewall-access-rule-properties fo
    end
    ```
 
-1. Get all account members:
+1. Get all access rules:
 
    ```crystal
    client.account_access_rules.index(
