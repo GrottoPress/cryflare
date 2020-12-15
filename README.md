@@ -18,7 +18,7 @@ Find the complete documentation in the `docs/` directory of this repository.
 - [x] Zone settings
 - [x] DNS records
 - [x] Cloudflare IPs
-- [ ] User-level Firewall Access Rule
+- [x] User-level Firewall Access Rule
 - [x] Account-level Firewall access rule
 - [x] Firewall Access Rule for a Zone
 - [ ] Firewall rules

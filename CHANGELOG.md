@@ -18,5 +18,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add *Zone Settings* endpoint
 - Add *DNS Records* endpoint
 - Add *Cloudflare IPs* endpoint
+- Add *User-level Firewall Access Rule* endpoint
 - Add *Account-level Firewall Access Rule* endpoint
 - Add *Firewall Access Rule for a Zone* endpoint

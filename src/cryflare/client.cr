@@ -67,6 +67,10 @@ class Cryflare::Client
     @user ||= User::Endpoint.new(self)
   end
 
+  def user_access_rules
+    @user_access_rules ||= UserAccessRule::Endpoint.new(self)
+  end
+
   def user_organizations : UserOrganization::Endpoint
     @user_organizations ||= UserOrganization::Endpoint.new(self)
   end
