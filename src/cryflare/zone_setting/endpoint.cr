@@ -6,12 +6,12 @@ class Cryflare::ZoneSetting::Endpoint
     yield update(zone_id, **params)
   end
 
-  def update(zone_id : String, **params) : Item
+  def update(zone_id : String, **params) : List
     @client.patch(
       "#{self.class.path(zone_id)}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      List.from_json(response.body_io)
     end
   end
 
