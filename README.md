@@ -20,7 +20,6 @@ Find the complete documentation in the `docs/` directory of this repository.
 - [x] Cloudflare IPs
 - [ ] User-level Firewall Access Rule
 - [ ] Account-level Firewall access rule
-- [ ] Organization-level Firewall Access Rule
 - [x] Firewall Access Rule for a Zone
 - [ ] Firewall rules
 - [ ] Page Rules for a Zone
