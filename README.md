@@ -19,7 +19,7 @@ Find the complete documentation in the `docs/` directory of this repository.
 - [x] DNS records
 - [x] Cloudflare IPs
 - [ ] User-level Firewall Access Rule
-- [ ] Account-level Firewall access rule
+- [x] Account-level Firewall access rule
 - [x] Firewall Access Rule for a Zone
 - [ ] Firewall rules
 - [ ] Page Rules for a Zone
