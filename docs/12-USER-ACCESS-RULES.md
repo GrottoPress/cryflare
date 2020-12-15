@@ -1,6 +1,6 @@
 ## User Access Rules
 
-An *User Access Rule* represents a *Cloudflare* user-level firewall access rule.
+A *User Access Rule* represents a *Cloudflare* user-level firewall access rule.
 
 ### Schema
 
