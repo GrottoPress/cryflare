@@ -21,6 +21,7 @@ Find the complete documentation in the `docs/` directory of this repository.
 - [x] User-level Firewall Access Rule
 - [x] Account-level Firewall access rule
 - [x] Firewall Access Rule for a Zone
+- [x] Filters
 - [ ] Firewall rules
 - [ ] Page Rules for a Zone
 - [ ] Available Page Rules for a Zone

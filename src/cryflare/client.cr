@@ -63,6 +63,10 @@ class Cryflare::Client
     @dns_records ||= DnsRecord::Endpoint.new(self)
   end
 
+  def filters : Filter::Endpoint
+    @filters ||= Filter::Endpoint.new(self)
+  end
+
   def user : User::Endpoint
     @user ||= User::Endpoint.new(self)
   end
