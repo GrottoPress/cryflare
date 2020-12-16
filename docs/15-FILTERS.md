@@ -18,7 +18,7 @@ See https://api.cloudflare.com/#filters-properties for the raw JSON schema.
      [{expression: "ip.addr eq 1.2.3.4"}]
    ) do |response|
      if response.success?
-       response.result.try do |filter|
+       response.result.try &.each do |filter|
          puts filter.id
          puts filter.expression
          puts filter.description
