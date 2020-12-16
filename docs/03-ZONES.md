@@ -79,7 +79,7 @@ See https://api.cloudflare.com/#zone-properties for the raw JSON schema.
        response.result.try &.each do |zone|
          zone.original_name_servers.try &.each { |ns| puts ns }
          puts zone.original_registrar
-         puts zone.owner
+         puts zone.owner.name
          # ...
        end
      else
