@@ -97,7 +97,7 @@ describe Cryflare::UserAccessRule::Endpoint do
     end
   end
 
-  describe "#delete" do
+  describe "#destroy" do
     it "deletes user access rule" do
       response_json = IO::Memory.new <<-JSON
       {

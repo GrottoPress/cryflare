@@ -101,7 +101,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
     end
   end
 
-  describe "#delete" do
+  describe "#destroy" do
     it "deletes zone access rule" do
       response_json = IO::Memory.new <<-JSON
       {

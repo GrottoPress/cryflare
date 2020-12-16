@@ -105,7 +105,7 @@ describe Cryflare::Filter::Endpoint do
     end
   end
 
-  describe "#delete" do
+  describe "#destroy" do
     it "deletes single filter" do
       response_json = IO::Memory.new <<-JSON
       {

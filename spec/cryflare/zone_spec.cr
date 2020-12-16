@@ -155,7 +155,7 @@ describe Cryflare::Zone::Endpoint do
     end
   end
 
-  describe "#delete" do
+  describe "#destroy" do
     it "deletes zone" do
       response_json = IO::Memory.new <<-JSON
       {

@@ -102,7 +102,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
     end
   end
 
-  describe "#delete" do
+  describe "#destroy" do
     it "deletes account access rule" do
       response_json = IO::Memory.new <<-JSON
       {
