@@ -1,6 +1,6 @@
 name: cryflare
 version: 0.1.0
-description: A low-level API client for Cloudflare® (v4)
+description: A low-level API client for Cloudflare® v4
 
 authors:
   - GrottoPress <info@grottopress.com>
