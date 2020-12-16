@@ -67,6 +67,10 @@ class Cryflare::Client
     @filters ||= Filter::Endpoint.new(self)
   end
 
+  def firewall_rules : FirewallRule::Endpoint
+    @firewall_rules ||= FirewallRule::Endpoint.new(self)
+  end
+
   def user : User::Endpoint
     @user ||= User::Endpoint.new(self)
   end

@@ -22,3 +22,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Add *Account-level Firewall Access Rule* endpoint
 - Add *Firewall Access Rule for a Zone* endpoint
 - Add *Filters* endpoint
+- Add *Firewall Rules* endpoint
