@@ -43,7 +43,7 @@ class Cryflare::Client
     @accounts ||= Account::Endpoint.new(self)
   end
 
-  def account_access_rules
+  def account_access_rules : AccountAccessRule::Endpoint
     @account_access_rules ||= AccountAccessRule::Endpoint.new(self)
   end
 
@@ -75,7 +75,7 @@ class Cryflare::Client
     @user ||= User::Endpoint.new(self)
   end
 
-  def user_access_rules
+  def user_access_rules : UserAccessRule::Endpoint
     @user_access_rules ||= UserAccessRule::Endpoint.new(self)
   end
 
@@ -87,7 +87,7 @@ class Cryflare::Client
     @zones ||= Zone::Endpoint.new(self)
   end
 
-  def zone_access_rules
+  def zone_access_rules : ZoneAccessRule::Endpoint
     @zone_access_rules ||= ZoneAccessRule::Endpoint.new(self)
   end
 
