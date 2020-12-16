@@ -2,6 +2,77 @@
 
 *Cryflare* is a low-level API client for *Cloudflare&reg;* v4. It features an intuitive interface that maps perfectly to the *Cloudflare* API.
 
+### Usage Examples
+
+```crystal
+# Create a new client
+client = Cryflare::Client.new(
+  email: "cloudflare-email",
+  key: "cloudflare-api-key"
+)
+```
+
+1. Get zone by name
+   ```crystal
+   client.zones.index(name: "grottopress.com") do |response|
+     if response.success?
+       response.result.try &.first?.try do |zone|
+         puts zone.id
+         puts zone.name
+         puts zone.owner.name
+         # ...
+       end
+     else
+       response.errors.each do |error|
+         puts error.code
+         puts error.message
+       end
+     end
+   end
+   ```
+
+1. Create new DNS record
+   ```crystal
+   client.dns_records.create(
+     "zone-id",
+     type: "A",
+     name: "example.com",
+     content: "127.0.0.1",
+     ttl: 120
+   ) do |response|
+     if response.success?
+       response.result.try do |dns_record|
+         puts dns_record.id
+         puts dns_record.name
+         puts dns_record.content
+         # ...
+       end
+     else
+       response.errors.each do |error|
+         puts error.code
+         puts error.message
+       end
+     end
+   end
+   ```
+
+1. Delete firewall rule
+   ```crystal
+   client.firewall_rules.destroy("zone-id", "rule-id") do |response|
+     if response.success?
+       response.result.try do |firewall_rule|
+         puts firewall_rule.id
+         # ...
+       end
+     else
+       response.errors.each do |error|
+         puts error.code
+         puts error.message
+       end
+     end
+   end
+   ```
+
 ## Documentation
 
 Find the complete documentation in the `docs/` directory of this repository.
