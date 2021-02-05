@@ -59,14 +59,6 @@ See https://api.cloudflare.com/#accounts-properties for the raw JSON schema.
    end
    ```
 
-   You may get a single account by name, by passing the `name` parameter:
-
-   ```crystal
-   client.accounts.index(name: "example.tld") do |response|
-     puts response.result.try &.first?.try &.id
-   end
-   ```
-
 1. Get single account:
 
    ```crystal
