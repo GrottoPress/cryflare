@@ -6,7 +6,6 @@
    dependencies:
      cryflare:
        github: GrottoPress/cryflare
-       branch: master
    ```
 
 1. Run `shards install`

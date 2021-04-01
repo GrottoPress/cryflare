@@ -4,7 +4,7 @@ description: A low-level API client for Cloudflare® v4
 
 authors:
   - GrottoPress <info@grottopress.com>
-  - N Atta Kusi Adusei <attakusiadusei@gmail.com>
+  - N Atta Kusi Adusei
 
 crystal: ~> 1.0
 
