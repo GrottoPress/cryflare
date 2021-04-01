@@ -6,9 +6,9 @@ authors:
   - GrottoPress <info@grottopress.com>
   - N Atta Kusi Adusei <attakusiadusei@gmail.com>
 
-crystal: 0.35.0
+crystal: ~> 1.0
 
 development_dependencies:
   webmock:
     github: manastech/webmock.cr
-    version: ~> 0.13.0
+    version: ~> 0.14.0

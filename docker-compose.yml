@@ -3,7 +3,7 @@ services:
     environment:
       CLOUDFLARE_EMAIL: ${CLOUDFLARE_EMAIL}
       CLOUDFLARE_KEY: ${CLOUDFLARE_KEY}
-    image: crystallang/crystal:0.35.1-alpine
+    image: crystallang/crystal:1.0.0-alpine
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html

@@ -24,7 +24,7 @@
 
 ### Requirements
 
-*Crystal* **v0.35.0** or newer: Learn to install Crystal [here »](https://crystal-lang.org/install/)
+*Crystal* **v1.0.0** or newer: Learn to install Crystal [here »](https://crystal-lang.org/install/)
 
 ### References
 
