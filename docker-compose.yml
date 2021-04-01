@@ -1,5 +1,5 @@
 services:
-  crystal: &crystal
+  app: &crystal
     environment:
       CLOUDFLARE_EMAIL: ${CLOUDFLARE_EMAIL}
       CLOUDFLARE_KEY: ${CLOUDFLARE_KEY}
