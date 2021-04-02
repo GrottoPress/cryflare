@@ -99,27 +99,20 @@ Find the complete documentation in the `docs/` directory of this repository.
 
 ## Development
 
-Create a `.env` file:
+Generate a token from your Cloudflare [account](https://dash.cloudflare.com/profile/api-tokens) that can read zones (`Zone:Read`).
 
-```bash
-CLOUDFLARE_EMAIL=myemail@example.tld
-CLOUDFLARE_KEY=abcdefghijklmnopqrstuvwxyz
-```
-
-Update the file with your own details. Then run tests with `docker-compose run --rm spec`. If you need to update shards before that, run `docker-compose run --rm shards`.
-
-If you would rather run tests on your local machine (ie, without docker), create a `.env.sh` file:
+Create a `.env.sh` file:
 
 ```bash
 #!/bin/bash
 #
-export CLOUDFLARE_EMAIL='myemail@example.tld'
-export CLOUDFLARE_KEY='abcdefghijklmnopqrstuvwxyz'
+export CLOUDFLARE_TOKEN='your-cloudflare-token-here'
+
 ```
 
 Update the file with your own details. Then run tests with `source .env.sh && crystal spec`.
 
-**IMPORTANT**: Remember to set permissions for your env files to `0600` or stricter: `chmod 0600 .env*`.
+**IMPORTANT**: Remember to set permissions for your env file to `0600` or stricter: `chmod 0600 .env*`.
 
 ## Contributing
 
