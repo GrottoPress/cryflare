@@ -19,7 +19,7 @@ describe Cryflare::UserOrganization::Endpoint do
         "https://api.cloudflare.com/client/v4/user/organizations/a1b2c3"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_organizations.destroy("a1b2c3") do |response|
         response.success?.should be_true
@@ -58,7 +58,7 @@ describe Cryflare::UserOrganization::Endpoint do
         .with(query: {"status" => "member", "name" => "GrottoPress"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_organizations.index(
         name: "GrottoPress",
@@ -96,7 +96,7 @@ describe Cryflare::UserOrganization::Endpoint do
         "https://api.cloudflare.com/client/v4/user/organizations/a1b2c3"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_organizations.show("a1b2c3") do |response|
         response.success?.should be_true

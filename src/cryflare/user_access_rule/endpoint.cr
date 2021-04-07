@@ -1,5 +1,5 @@
 class Cryflare::UserAccessRule::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def create(**params)
@@ -7,7 +7,7 @@ class Cryflare::UserAccessRule::Endpoint
   end
 
   def create(**params) : Item
-    @client.post(self.class.path, body: params.to_json) do |response|
+    @cryflare.post(self.class.path, body: params.to_json) do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -17,7 +17,7 @@ class Cryflare::UserAccessRule::Endpoint
   end
 
   def update(id : String, **params) : Item
-    @client.patch(
+    @cryflare.patch(
       "#{self.class.path}/#{id}",
       body: params.to_json
     ) do |response|
@@ -30,7 +30,7 @@ class Cryflare::UserAccessRule::Endpoint
   end
 
   def destroy(id : String) : Item
-    @client.delete("#{self.class.path}/#{id}") do |response|
+    @cryflare.delete("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -40,7 +40,7 @@ class Cryflare::UserAccessRule::Endpoint
   end
 
   def index(**params) : List
-    @client.get(
+    @cryflare.get(
       "#{self.class.path}?#{HTTP::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -52,7 +52,7 @@ class Cryflare::UserAccessRule::Endpoint
   end
 
   def self.uri : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path
     uri
   end

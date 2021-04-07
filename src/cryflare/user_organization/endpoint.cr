@@ -1,5 +1,5 @@
 class Cryflare::UserOrganization::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def destroy(id : String)
@@ -7,7 +7,7 @@ class Cryflare::UserOrganization::Endpoint
   end
 
   def destroy(id : String) : Item
-    @client.delete("#{self.class.path}/#{id}") do |response|
+    @cryflare.delete("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -17,7 +17,7 @@ class Cryflare::UserOrganization::Endpoint
   end
 
   def index(**params) : List
-    @client.get(
+    @cryflare.get(
       "#{self.class.path}?#{HTTP::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -29,7 +29,7 @@ class Cryflare::UserOrganization::Endpoint
   end
 
   def show(id : String) : Item
-    @client.get("#{self.class.path}/#{id}") do |response|
+    @cryflare.get("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -39,7 +39,7 @@ class Cryflare::UserOrganization::Endpoint
   end
 
   def self.uri : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path
     uri
   end

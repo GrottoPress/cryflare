@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Bump minimum required *Crystal* version to v1.0
+- Rename `Cryflare::Client` to just `Cryflare`
 
 ## [0.1.0] - 2020-12-16
 

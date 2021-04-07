@@ -40,7 +40,7 @@ describe Cryflare::UserAccessRule::Endpoint do
         .with(body: %({"mode":"js_challenge"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_access_rules.create(mode: "js_challenge") do |response|
         response.success?.should be_true
@@ -88,7 +88,7 @@ describe Cryflare::UserAccessRule::Endpoint do
         .with(body: %({"mode":"block"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_access_rules.update("a1b2c3", mode: "block") do |response|
         response.success?.should be_true
@@ -115,7 +115,7 @@ describe Cryflare::UserAccessRule::Endpoint do
         "https://api.cloudflare.com/client/v4/user/firewall/access_rules/rules/a1b2c3"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_access_rules.destroy("a1b2c3") do |response|
         response.success?.should be_true
@@ -165,7 +165,7 @@ describe Cryflare::UserAccessRule::Endpoint do
         .with(query: {"notes" => "my note"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user_access_rules.index(notes: "my note") do |response|
         response.success?.should be_true

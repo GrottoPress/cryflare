@@ -30,7 +30,7 @@ describe Cryflare::User::Endpoint do
         .with(body: %({"first_name":"John"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user.update(first_name: "John") do |response|
         response.success?.should be_true
@@ -67,7 +67,7 @@ describe Cryflare::User::Endpoint do
       WebMock.stub(:get, "https://api.cloudflare.com/client/v4/user")
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.user.show do |response|
         response.success?.should be_true

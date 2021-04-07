@@ -73,7 +73,7 @@ describe Cryflare::AccountRole::Endpoint do
         "https://api.cloudflare.com/client/v4/accounts/a1b2c3/roles"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_roles.index("a1b2c3") do |response|
         response.success?.should be_true
@@ -152,7 +152,7 @@ describe Cryflare::AccountRole::Endpoint do
         "https://api.cloudflare.com/client/v4/accounts/a1b2c3/roles/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_roles.show("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true

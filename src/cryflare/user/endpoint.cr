@@ -1,5 +1,5 @@
 class Cryflare::User::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def update(**params)
@@ -7,7 +7,7 @@ class Cryflare::User::Endpoint
   end
 
   def update(**params) : Item
-    @client.patch(self.class.path, body: params.to_json) do |response|
+    @cryflare.patch(self.class.path, body: params.to_json) do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -17,15 +17,17 @@ class Cryflare::User::Endpoint
   end
 
   def show : Item
-    @client.get(self.class.path) { |response| Item.from_json(response.body_io) }
+    @cryflare.get(self.class.path) do |response|
+      Item.from_json(response.body_io)
+    end
   end
 
   def self.path : String
-    "#{Client.path}/user"
+    "#{Cryflare.path}/user"
   end
 
   def self.uri : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path
     uri
   end

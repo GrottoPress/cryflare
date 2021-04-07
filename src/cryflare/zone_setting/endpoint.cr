@@ -1,5 +1,5 @@
 class Cryflare::ZoneSetting::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def update(zone_id : String, **params)
@@ -7,7 +7,7 @@ class Cryflare::ZoneSetting::Endpoint
   end
 
   def update(zone_id : String, **params) : List
-    @client.patch(
+    @cryflare.patch(
       "#{self.class.path(zone_id)}",
       body: params.to_json
     ) do |response|
@@ -20,7 +20,7 @@ class Cryflare::ZoneSetting::Endpoint
   end
 
   def update(zone_id : String, id : String, **params) : Item
-    @client.patch(
+    @cryflare.patch(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -33,7 +33,7 @@ class Cryflare::ZoneSetting::Endpoint
   end
 
   def index(zone_id : String) : List
-    @client.get("#{self.class.path(zone_id)}") do |response|
+    @cryflare.get("#{self.class.path(zone_id)}") do |response|
       List.from_json(response.body_io)
     end
   end
@@ -43,7 +43,7 @@ class Cryflare::ZoneSetting::Endpoint
   end
 
   def show(zone_id : String, id : String) : Item
-    @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
+    @cryflare.get("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -53,7 +53,7 @@ class Cryflare::ZoneSetting::Endpoint
   end
 
   def self.uri(zone_id : String) : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path(zone_id)
     uri
   end

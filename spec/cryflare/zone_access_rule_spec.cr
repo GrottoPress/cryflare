@@ -40,7 +40,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
         .with(body: %({"mode":"challenge"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_access_rules.create("a1b2c3", mode: "challenge") do |response|
         response.success?.should be_true
@@ -88,7 +88,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
         .with(body: %({"mode":"block"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_access_rules.update(
         "a1b2c3",
@@ -119,7 +119,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/firewall/access_rules/rules/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_access_rules.destroy(
         "a1b2c3",
@@ -173,7 +173,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
         .with(query: {"mode" => "js_challenge"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_access_rules.index(
         "a1b2c3",

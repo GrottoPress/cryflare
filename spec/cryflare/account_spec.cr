@@ -23,7 +23,7 @@ describe Cryflare::Account::Endpoint do
         .with(body: %({"id":"a1b2c3","name":"Demo Account"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.accounts.replace(
         "a1b2c3",
@@ -60,7 +60,7 @@ describe Cryflare::Account::Endpoint do
         .with(query: {"page" => "1", "per_page" => "20"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.accounts.index(page: "1", per_page: "20") do |response|
         response.success?.should be_true
@@ -90,7 +90,7 @@ describe Cryflare::Account::Endpoint do
       WebMock.stub(:get, "https://api.cloudflare.com/client/v4/accounts/a1b2c3")
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.accounts.show("a1b2c3") do |response|
         response.success?.should be_true

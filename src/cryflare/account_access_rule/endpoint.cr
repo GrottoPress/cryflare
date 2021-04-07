@@ -1,5 +1,5 @@
 class Cryflare::AccountAccessRule::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def create(account_id : String, **params)
@@ -7,7 +7,7 @@ class Cryflare::AccountAccessRule::Endpoint
   end
 
   def create(account_id : String, **params) : Item
-    @client.post(
+    @cryflare.post(
       self.class.path(account_id),
       body: params.to_json
     ) do |response|
@@ -20,7 +20,7 @@ class Cryflare::AccountAccessRule::Endpoint
   end
 
   def update(account_id : String, __ id : String, **params) : Item
-    @client.patch(
+    @cryflare.patch(
       "#{self.class.path(account_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -33,7 +33,7 @@ class Cryflare::AccountAccessRule::Endpoint
   end
 
   def destroy(account_id : String, id : String) : Item
-    @client.delete("#{self.class.path(account_id)}/#{id}") do |response|
+    @cryflare.delete("#{self.class.path(account_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -43,7 +43,7 @@ class Cryflare::AccountAccessRule::Endpoint
   end
 
   def index(account_id : String, **params) : List
-    @client.get(
+    @cryflare.get(
       "#{self.class.path(account_id)}?#{HTTP::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -55,7 +55,7 @@ class Cryflare::AccountAccessRule::Endpoint
   end
 
   def show(account_id : String, id : String) : Item
-    @client.get("#{self.class.path(account_id)}/#{id}") do |response|
+    @cryflare.get("#{self.class.path(account_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -65,7 +65,7 @@ class Cryflare::AccountAccessRule::Endpoint
   end
 
   def self.uri(account_id : String) : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path(account_id)
     uri
   end

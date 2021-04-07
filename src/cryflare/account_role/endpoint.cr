@@ -1,5 +1,5 @@
 class Cryflare::AccountRole::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def index(account_id : String)
@@ -7,7 +7,7 @@ class Cryflare::AccountRole::Endpoint
   end
 
   def index(account_id : String) : List
-    @client.get(self.class.path account_id) do |response|
+    @cryflare.get(self.class.path account_id) do |response|
       List.from_json(response.body_io)
     end
   end
@@ -17,7 +17,7 @@ class Cryflare::AccountRole::Endpoint
   end
 
   def show(account_id : String, id : String) : Item
-    @client.get("#{self.class.path(account_id)}/#{id}") do |response|
+    @cryflare.get("#{self.class.path(account_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -27,7 +27,7 @@ class Cryflare::AccountRole::Endpoint
   end
 
   def self.uri(account_id : String) : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path(account_id)
     uri
   end

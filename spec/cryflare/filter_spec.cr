@@ -27,7 +27,7 @@ describe Cryflare::Filter::Endpoint do
         .with(body: %([{"expression":"ip.addr eq 1.2.3.4"}]))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.filters.create(
         "a1b2c3",
@@ -65,7 +65,7 @@ describe Cryflare::Filter::Endpoint do
         .with(body: %([{"id":"d4e5f6"}]))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.filters.replace("a1b2c3", [{id: "d4e5f6"}]) do |response|
         response.success?.should be_true
@@ -96,7 +96,7 @@ describe Cryflare::Filter::Endpoint do
         .with(body: %({"id":"d4e5f6"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.filters.replace("a1b2c3", "d4e5f6", id: "d4e5f6") do |response|
         response.success?.should be_true
@@ -127,7 +127,7 @@ describe Cryflare::Filter::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/filters/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.filters.destroy("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true
@@ -162,7 +162,7 @@ describe Cryflare::Filter::Endpoint do
         .with(query: {"paused" => "true"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.filters.index("a1b2c3", paused: "true") do |response|
         response.success?.should be_true
@@ -193,7 +193,7 @@ describe Cryflare::Filter::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/filters/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.filters.show("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true

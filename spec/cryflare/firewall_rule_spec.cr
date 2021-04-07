@@ -48,7 +48,7 @@ describe Cryflare::FirewallRule::Endpoint do
         .with(body: %([{"action":"log"}]))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.firewall_rules.create("a1b2c3", [{action: "log"}]) do |response|
         response.success?.should be_true
@@ -104,7 +104,7 @@ describe Cryflare::FirewallRule::Endpoint do
         .with(body: %([{"id":"d4e5f6"}]))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.firewall_rules.replace("a1b2c3", [{id: "d4e5f6"}]) do |response|
         response.success?.should be_true
@@ -156,7 +156,7 @@ describe Cryflare::FirewallRule::Endpoint do
         .with(body: %({"id":"d4e5f6"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.firewall_rules.replace(
         "a1b2c3",
@@ -216,7 +216,7 @@ describe Cryflare::FirewallRule::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/firewall/rules/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.firewall_rules.destroy("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true
@@ -272,7 +272,7 @@ describe Cryflare::FirewallRule::Endpoint do
         .with(query: {"paused" => "true"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.firewall_rules.index("a1b2c3", paused: "true") do |response|
         response.success?.should be_true
@@ -324,7 +324,7 @@ describe Cryflare::FirewallRule::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/firewall/rules/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.firewall_rules.show("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true

@@ -1,5 +1,5 @@
 class Cryflare::CloudflareIp::Endpoint
-  def initialize(@client : Client)
+  def initialize(@cryflare : Cryflare)
   end
 
   def show
@@ -7,17 +7,17 @@ class Cryflare::CloudflareIp::Endpoint
   end
 
   def show : Item
-    @client.get(self.class.path) do |response|
+    @cryflare.get(self.class.path) do |response|
       Item.from_json(response.body_io)
     end
   end
 
   def self.path : String
-    "#{Client.path}/ips"
+    "#{Cryflare.path}/ips"
   end
 
   def self.uri : URI
-    uri = Client.base_uri
+    uri = Cryflare.base_uri
     uri.path = path
     uri
   end

@@ -40,7 +40,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
         .with(body: %({"mode":"block"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_access_rules.create("a1b2c3", mode: "block") do |response|
         response.success?.should be_true
@@ -88,7 +88,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
         .with(body: %({"id":"d4e5f6","mode":"block"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_access_rules.update(
         "a1b2c3",
@@ -120,7 +120,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
         "https://api.cloudflare.com/client/v4/accounts/a1b2c3/firewall/access_rules/rules/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_access_rules.destroy("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true
@@ -170,7 +170,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
         .with(query: {"per_page" => "30"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_access_rules.index("a1b2c3", per_page: "30") do |response|
         response.success?.should be_true
@@ -216,7 +216,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
         "https://api.cloudflare.com/client/v4/accounts/a1b2c3/firewall/access_rules/rules/d4e5f6"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.account_access_rules.show("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true

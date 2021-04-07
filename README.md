@@ -6,10 +6,7 @@
 
 ```crystal
 # Create a new client
-client = Cryflare::Client.new(
-  email: "cloudflare-email",
-  key: "cloudflare-api-key"
-)
+client = Cryflare.new(email: "cloudflare-email", key: "cloudflare-api-key")
 ```
 
 1. Get zone by name

@@ -69,7 +69,7 @@ describe Cryflare::Zone::Endpoint do
         .with(body: %({"name":"example.tld"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.create(name: "example.tld") do |response|
         response.success?.should be_true
@@ -146,7 +146,7 @@ describe Cryflare::Zone::Endpoint do
         .with(body: %({"paused":true}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.update("a1b2c3", paused: true) do |response|
         response.success?.should be_true
@@ -171,7 +171,7 @@ describe Cryflare::Zone::Endpoint do
       WebMock.stub(:delete, "https://api.cloudflare.com/client/v4/zones/a1b2c3")
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.destroy("a1b2c3") do |response|
         response.success?.should be_true
@@ -250,7 +250,7 @@ describe Cryflare::Zone::Endpoint do
         .with(query: {"name" => "example.tld"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.index(name: "example.tld") do |response|
         response.success?.should be_true
@@ -326,7 +326,7 @@ describe Cryflare::Zone::Endpoint do
       WebMock.stub(:get, "https://api.cloudflare.com/client/v4/zones/a1b2c3")
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.show("a1b2c3") do |response|
         response.success?.should be_true
@@ -353,7 +353,7 @@ describe Cryflare::Zone::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/activation_check"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.check_activation("a1b2c3") do |response|
         response.success?.should be_true
@@ -382,7 +382,7 @@ describe Cryflare::Zone::Endpoint do
         .with(body: %({"purge_everything":true}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zones.purge_cache("a1b2c3", purge_everything: true) do |response|
         response.success?.should be_true

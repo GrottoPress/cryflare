@@ -37,7 +37,7 @@ describe Cryflare::DnsRecord::Endpoint do
         .with(body: %({"type":"A","name":"example.com","content":"127.0.0.1","ttl":120}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.dns_records.create(
         "a1b2c3",
@@ -88,7 +88,7 @@ describe Cryflare::DnsRecord::Endpoint do
         .with(body: %({"type":"A","name":"example.com"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.dns_records.update(
         "a1b2c3",
@@ -138,7 +138,7 @@ describe Cryflare::DnsRecord::Endpoint do
         .with(body: %({"type":"A","name":"example.com"}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.dns_records.replace(
         "a1b2c3",
@@ -170,7 +170,7 @@ describe Cryflare::DnsRecord::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/dns_records/d1e2f3"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.dns_records.destroy("a1b2c3", "d1e2f3") do |response|
         response.success?.should be_true
@@ -217,7 +217,7 @@ describe Cryflare::DnsRecord::Endpoint do
         .with(query: {"type" => "A", "name" => "example.com"})
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.dns_records.index(
         "a1b2c3",
@@ -264,7 +264,7 @@ describe Cryflare::DnsRecord::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/dns_records/d1e2f3"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.dns_records.show("a1b2c3", "d1e2f3") do |response|
         response.success?.should be_true

@@ -1,11 +1,11 @@
-require "../spec_helper"
+require "./spec_helper"
 
-describe Cryflare::Client do
+describe Cryflare do
   ENV["CLOUDFLARE_TOKEN"]?.try do |token|
     it "connects to Cloudflare" do
       WebMock.allow_net_connect = true
 
-      client = Cryflare::Client.new(token: token)
+      client = Cryflare.new(token: token)
 
       client.zones.index do |response|
         response.success?.should be_true

@@ -24,7 +24,7 @@ describe Cryflare::ZoneSetting::Endpoint do
         .with(body: %({"value":14400}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_settings.update(
         "a1b2c3",
@@ -52,7 +52,7 @@ describe Cryflare::ZoneSetting::Endpoint do
         .with(body: %({"items":[{"id":"always_online","value":"on"}]}))
         .to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_settings.update(
         "a1b2c3",
@@ -78,7 +78,7 @@ describe Cryflare::ZoneSetting::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/settings"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_settings.index("a1b2c3") do |response|
         response.success?.should be_true
@@ -108,7 +108,7 @@ describe Cryflare::ZoneSetting::Endpoint do
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/settings/advanced_ddos"
       ).to_return(body_io: response_json)
 
-      client = Cryflare::Client.new(email: "user@website.com", key: "abcdef")
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
       client.zone_settings.show("a1b2c3", "advanced_ddos") do |response|
         response.success?.should be_true
