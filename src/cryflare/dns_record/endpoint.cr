@@ -1,7 +1,7 @@
 # TODO:
 # - `#import`
 # - `#export`
-class Cryflare::DnsRecord::Endpoint
+struct Cryflare::DnsRecord::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

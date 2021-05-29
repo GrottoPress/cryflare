@@ -1,4 +1,4 @@
-class Cryflare::ZoneAccessRule::Endpoint
+struct Cryflare::ZoneAccessRule::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

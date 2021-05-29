@@ -1,4 +1,4 @@
-class Cryflare::AccountAccessRule::Endpoint
+struct Cryflare::AccountAccessRule::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

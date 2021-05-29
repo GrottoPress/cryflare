@@ -1,4 +1,4 @@
-class Cryflare::CloudflareIp::Endpoint
+struct Cryflare::CloudflareIp::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

@@ -1,4 +1,4 @@
-class Cryflare::Account::Endpoint
+struct Cryflare::Account::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

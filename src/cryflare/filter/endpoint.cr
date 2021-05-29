@@ -1,4 +1,4 @@
-class Cryflare::Filter::Endpoint
+struct Cryflare::Filter::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

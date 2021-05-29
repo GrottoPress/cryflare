@@ -1,4 +1,4 @@
-class Cryflare::FirewallRule::Endpoint
+struct Cryflare::FirewallRule::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 

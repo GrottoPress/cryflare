@@ -1,4 +1,4 @@
-class Cryflare::ZoneSetting::Endpoint
+struct Cryflare::ZoneSetting::Endpoint
   def initialize(@cryflare : Cryflare)
   end
 
