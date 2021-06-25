@@ -30,20 +30,7 @@ class Cryflare
     end
   end
 
-  delegate :close,
-      :compress=,
-      :compress?,
-      :connect_timeout=,
-      :delete,
-      :dns_timeout=,
-      :get,
-      :patch,
-      :port,
-      :post,
-      :put,
-      :read_timeout=,
-      :write_timeout=,
-    to: http_client
+  forward_missing_to http_client
 
   def accounts : Account::Endpoint
     @accounts ||= Account::Endpoint.new(self)
