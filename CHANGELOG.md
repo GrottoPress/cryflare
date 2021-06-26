@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Forward missing `Cryflare` methods to *Crystal*'s `HTTP::Client`
+- Replace references to `HTTP::Params` with `URI::Params`. [[Ref]](https://github.com/crystal-lang/crystal/pull/10098)
 
 ## [0.3.0] - 2021-06-12
 

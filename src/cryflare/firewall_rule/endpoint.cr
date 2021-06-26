@@ -51,7 +51,7 @@ struct Cryflare::FirewallRule::Endpoint
 
   def index(zone_id : String, **params) : List
     @cryflare.get(
-      "#{self.class.path(zone_id)}?#{HTTP::Params.encode(params)}"
+      "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
     end

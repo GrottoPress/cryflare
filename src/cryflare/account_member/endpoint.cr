@@ -44,7 +44,7 @@ struct Cryflare::AccountMember::Endpoint
 
   def index(account_id : String, **params) : List
     @cryflare.get(
-      "#{self.class.path(account_id)}?#{HTTP::Params.encode(params)}"
+      "#{self.class.path(account_id)}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
     end
