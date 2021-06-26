@@ -18,7 +18,7 @@
 
 1. ##### Response:
 
-   A *Response* is *Cryflare*'s representation of the raw response received from the API server. It is a type-safe wrapper around the JSON response object.
+   A *Response* is *Cryflare*'s representation of the raw response body received from the API server. It is a type-safe wrapper around the JSON response object.
 
    A *Response* may contain a `result`, which may be an *Item* (a single resource object), or a *List* (an array of resource objects)
 
