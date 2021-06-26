@@ -14,7 +14,7 @@
 
    An *Endpoint* is a queryable path exposed by the API server, that returns a response.
    
-   In *Cryflare*, an endpoint represents a single resource endpoint, with methods that operation on its individual sub-endpoints.
+   In *Cryflare*, an endpoint represents a single resource endpoint, with methods that operate on its individual sub-endpoints.
 
 1. ##### Response:
 
