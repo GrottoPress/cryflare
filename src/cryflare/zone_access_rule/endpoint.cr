@@ -1,13 +1,12 @@
 struct Cryflare::ZoneAccessRule::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def create(zone_id : String, **params)
     yield create(zone_id, **params)
   end
 
   def create(zone_id : String, **params) : Item
-    @cryflare.post(
+    @client.post(
       self.class.path(zone_id),
       body: params.to_json
     ) do |response|
@@ -20,7 +19,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def update(zone_id : String, id : String, **params) : Item
-    @cryflare.patch(
+    @client.patch(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -33,7 +32,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def destroy(zone_id : String, id : String, **params) : Item
-    @cryflare.delete(
+    @client.delete(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -46,7 +45,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def index(zone_id : String, **params) : List
-    @cryflare.get(
+    @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -58,7 +57,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def self.uri(zone_id : String) : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path(zone_id)
     uri
   end

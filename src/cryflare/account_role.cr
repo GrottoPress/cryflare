@@ -1,5 +1,5 @@
 struct Cryflare::AccountRole
-  include JSON::Serializable
+  include Hapi::Resource
 
   getter id : String
   getter name : String

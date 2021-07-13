@@ -1,5 +1,5 @@
 struct Cryflare::UserOrganization
-  include JSON::Serializable
+  include Hapi::Resource
 
   enum Status
     Member

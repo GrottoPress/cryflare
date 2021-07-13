@@ -2,15 +2,14 @@
 # - `#import`
 # - `#export`
 struct Cryflare::DnsRecord::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def create(zone_id : String, **params)
     yield create(zone_id, **params)
   end
 
   def create(zone_id : String, **params) : Item
-    @cryflare.post(
+    @client.post(
       "#{self.class.path(zone_id)}",
       body: params.to_json
     ) do |response|
@@ -23,7 +22,7 @@ struct Cryflare::DnsRecord::Endpoint
   end
 
   def update(zone_id : String, id : String, **params) : Item
-    @cryflare.patch(
+    @client.patch(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -36,7 +35,7 @@ struct Cryflare::DnsRecord::Endpoint
   end
 
   def replace(zone_id : String, id : String, **params) : Item
-    @cryflare.put(
+    @client.put(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -49,7 +48,7 @@ struct Cryflare::DnsRecord::Endpoint
   end
 
   def destroy(zone_id : String, id : String) : Item
-    @cryflare.delete("#{self.class.path(zone_id)}/#{id}") do |response|
+    @client.delete("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -59,7 +58,7 @@ struct Cryflare::DnsRecord::Endpoint
   end
 
   def index(zone_id : String, **params) : List
-    @cryflare.get(
+    @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -71,7 +70,7 @@ struct Cryflare::DnsRecord::Endpoint
   end
 
   def show(zone_id : String, id : String) : Item
-    @cryflare.get("#{self.class.path(zone_id)}/#{id}") do |response|
+    @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -81,7 +80,7 @@ struct Cryflare::DnsRecord::Endpoint
   end
 
   def self.uri(zone_id : String) : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path(zone_id)
     uri
   end

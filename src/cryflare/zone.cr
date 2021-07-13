@@ -1,5 +1,5 @@
 struct Cryflare::Zone
-  include JSON::Serializable
+  include Hapi::Resource
 
   enum Status
     Active

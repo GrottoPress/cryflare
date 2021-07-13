@@ -1,6 +1,6 @@
 module Cryflare::Response
   macro included
-    include JSON::Serializable
+    include Hapi::Resource
 
     getter errors : Array(Error)
     getter messages : Array(String)

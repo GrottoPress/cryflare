@@ -1,13 +1,12 @@
 struct Cryflare::ZoneSetting::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def update(zone_id : String, **params)
     yield update(zone_id, **params)
   end
 
   def update(zone_id : String, **params) : List
-    @cryflare.patch(
+    @client.patch(
       "#{self.class.path(zone_id)}",
       body: params.to_json
     ) do |response|
@@ -20,7 +19,7 @@ struct Cryflare::ZoneSetting::Endpoint
   end
 
   def update(zone_id : String, id : String, **params) : Item
-    @cryflare.patch(
+    @client.patch(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -33,7 +32,7 @@ struct Cryflare::ZoneSetting::Endpoint
   end
 
   def index(zone_id : String) : List
-    @cryflare.get("#{self.class.path(zone_id)}") do |response|
+    @client.get("#{self.class.path(zone_id)}") do |response|
       List.from_json(response.body_io)
     end
   end
@@ -43,7 +42,7 @@ struct Cryflare::ZoneSetting::Endpoint
   end
 
   def show(zone_id : String, id : String) : Item
-    @cryflare.get("#{self.class.path(zone_id)}/#{id}") do |response|
+    @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -53,7 +52,7 @@ struct Cryflare::ZoneSetting::Endpoint
   end
 
   def self.uri(zone_id : String) : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path(zone_id)
     uri
   end

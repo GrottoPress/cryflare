@@ -1,5 +1,5 @@
 struct Cryflare::Zone::Plan
-  include JSON::Serializable
+  include Hapi::Resource
 
   # CF returns empty string for free plans, which results in this error:
   # `Unknown enum Cryflare::Zone::Plan::Frequency value:  (ArgumentError)`

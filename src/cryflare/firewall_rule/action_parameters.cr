@@ -1,11 +1,11 @@
 struct Cryflare::FirewallRule::ActionParameters
-  include JSON::Serializable
+  include Hapi::Resource
 
   struct Uri
-    include JSON::Serializable
+    include Hapi::Resource
 
     struct Values
-      include JSON::Serializable
+      include Hapi::Resource
 
       getter value : String
     end

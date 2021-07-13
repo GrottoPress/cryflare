@@ -1,5 +1,5 @@
 struct Cryflare::Filter
-  include JSON::Serializable
+  include Hapi::Resource
 
   getter description : String
   getter expression : String

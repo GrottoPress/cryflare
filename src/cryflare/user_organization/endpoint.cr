@@ -1,13 +1,12 @@
 struct Cryflare::UserOrganization::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def destroy(id : String)
     yield destroy(id)
   end
 
   def destroy(id : String) : Item
-    @cryflare.delete("#{self.class.path}/#{id}") do |response|
+    @client.delete("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -17,7 +16,7 @@ struct Cryflare::UserOrganization::Endpoint
   end
 
   def index(**params) : List
-    @cryflare.get(
+    @client.get(
       "#{self.class.path}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -29,7 +28,7 @@ struct Cryflare::UserOrganization::Endpoint
   end
 
   def show(id : String) : Item
-    @cryflare.get("#{self.class.path}/#{id}") do |response|
+    @client.get("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -39,7 +38,7 @@ struct Cryflare::UserOrganization::Endpoint
   end
 
   def self.uri : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path
     uri
   end

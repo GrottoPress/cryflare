@@ -1,10 +1,11 @@
-require "json"
-require "http/client"
+require "hapi"
 
 require "./cryflare/version"
 require "./cryflare/**"
 
 class Cryflare
+  include Hapi::Client
+
   def initialize(*, token : String)
     initialize
 
@@ -29,8 +30,6 @@ class Cryflare
       request.headers["X-Auth-Key"] = key
     end
   end
-
-  forward_missing_to http_client
 
   def accounts : Account::Endpoint
     @accounts ||= Account::Endpoint.new(self)
@@ -93,13 +92,7 @@ class Cryflare
   end
 
   def self.uri : URI
-    uri = base_uri
-    uri.path = path
-    uri
-  end
-
-  def self.base_uri : URI
-    URI.parse("https://api.cloudflare.com")
+    URI.parse("https://api.cloudflare.com#{path}")
   end
 
   private def initialize
@@ -107,10 +100,6 @@ class Cryflare
       set_content_type(request.headers)
       set_user_agent(request.headers)
     end
-  end
-
-  private def http_client : HTTP::Client
-    @http_client ||= HTTP::Client.new(self.class.base_uri)
   end
 
   private def set_content_type(headers)

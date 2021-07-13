@@ -1,13 +1,12 @@
 struct Cryflare::UserAccessRule::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def create(**params)
     yield create(**params)
   end
 
   def create(**params) : Item
-    @cryflare.post(self.class.path, body: params.to_json) do |response|
+    @client.post(self.class.path, body: params.to_json) do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -17,7 +16,7 @@ struct Cryflare::UserAccessRule::Endpoint
   end
 
   def update(id : String, **params) : Item
-    @cryflare.patch(
+    @client.patch(
       "#{self.class.path}/#{id}",
       body: params.to_json
     ) do |response|
@@ -30,7 +29,7 @@ struct Cryflare::UserAccessRule::Endpoint
   end
 
   def destroy(id : String) : Item
-    @cryflare.delete("#{self.class.path}/#{id}") do |response|
+    @client.delete("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -40,7 +39,7 @@ struct Cryflare::UserAccessRule::Endpoint
   end
 
   def index(**params) : List
-    @cryflare.get(
+    @client.get(
       "#{self.class.path}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -52,7 +51,7 @@ struct Cryflare::UserAccessRule::Endpoint
   end
 
   def self.uri : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path
     uri
   end

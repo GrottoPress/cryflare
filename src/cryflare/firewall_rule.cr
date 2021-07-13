@@ -1,5 +1,5 @@
 struct Cryflare::FirewallRule
-  include JSON::Serializable
+  include Hapi::Resource
 
   enum Action
     Block

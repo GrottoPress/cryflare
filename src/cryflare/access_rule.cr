@@ -1,7 +1,7 @@
 module Cryflare::AccessRule
   module Common
     macro included
-      include JSON::Serializable
+      include Hapi::Resource
 
       getter allowed_modes : Array(AccessRule::Mode)?
       getter configuration : AccessRule::Configuration?
@@ -22,7 +22,7 @@ module Cryflare::AccessRule
   end
 
   struct Configuration
-    include JSON::Serializable
+    include Hapi::Resource
 
     enum Target
       IP

@@ -1,5 +1,5 @@
 struct Cryflare::ResultInfo
-  include JSON::Serializable
+  include Hapi::Resource
 
   getter page : Int32
   getter per_page : Int32

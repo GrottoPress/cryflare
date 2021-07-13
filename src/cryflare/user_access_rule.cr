@@ -2,7 +2,7 @@ struct Cryflare::UserAccessRule
   include AccessRule::Common
 
   struct Scope
-    include JSON::Serializable
+    include Hapi::Resource
 
     enum Type
       User

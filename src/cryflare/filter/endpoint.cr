@@ -1,13 +1,12 @@
 struct Cryflare::Filter::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def create(zone_id : String, filters : Array(NamedTuple))
     yield create(zone_id, filters)
   end
 
   def create(zone_id : String, filters : Array(NamedTuple)) : List
-    @cryflare.post(
+    @client.post(
       self.class.path(zone_id),
       body: filters.to_json
     ) do |response|
@@ -20,7 +19,7 @@ struct Cryflare::Filter::Endpoint
   end
 
   def replace(zone_id : String, filters : Array(NamedTuple)) : List
-    @cryflare.put(self.class.path(zone_id), body: filters.to_json) do |response|
+    @client.put(self.class.path(zone_id), body: filters.to_json) do |response|
       List.from_json(response.body_io)
     end
   end
@@ -30,7 +29,7 @@ struct Cryflare::Filter::Endpoint
   end
 
   def replace(zone_id : String, __ id : String, **params) : Item
-    @cryflare.put(
+    @client.put(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
@@ -43,7 +42,7 @@ struct Cryflare::Filter::Endpoint
   end
 
   def destroy(zone_id : String, id : String) : Item
-    @cryflare.delete("#{self.class.path(zone_id)}/#{id}") do |response|
+    @client.delete("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -53,7 +52,7 @@ struct Cryflare::Filter::Endpoint
   end
 
   def index(zone_id : String, **params) : List
-    @cryflare.get(
+    @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -65,7 +64,7 @@ struct Cryflare::Filter::Endpoint
   end
 
   def show(zone_id : String, id : String) : Item
-    @cryflare.get("#{self.class.path(zone_id)}/#{id}") do |response|
+    @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -75,7 +74,7 @@ struct Cryflare::Filter::Endpoint
   end
 
   def self.uri(zone_id : String) : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path(zone_id)
     uri
   end

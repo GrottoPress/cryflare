@@ -1,5 +1,5 @@
 struct Cryflare::User
-  include JSON::Serializable
+  include Hapi::Resource
 
   getter betas : Array(String)?
   getter created_on : Time?

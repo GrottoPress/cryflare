@@ -1,8 +1,8 @@
 struct Cryflare::AccountRole::Permissions
-  include JSON::Serializable
+  include Hapi::Resource
 
   struct Values
-    include JSON::Serializable
+    include Hapi::Resource
 
     getter? read : Bool
     getter? write : Bool

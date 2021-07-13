@@ -1,13 +1,12 @@
 struct Cryflare::AccountRole::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def index(account_id : String)
     yield index(account_id)
   end
 
   def index(account_id : String) : List
-    @cryflare.get(self.class.path account_id) do |response|
+    @client.get(self.class.path account_id) do |response|
       List.from_json(response.body_io)
     end
   end
@@ -17,7 +16,7 @@ struct Cryflare::AccountRole::Endpoint
   end
 
   def show(account_id : String, id : String) : Item
-    @cryflare.get("#{self.class.path(account_id)}/#{id}") do |response|
+    @client.get("#{self.class.path(account_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -27,7 +26,7 @@ struct Cryflare::AccountRole::Endpoint
   end
 
   def self.uri(account_id : String) : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path(account_id)
     uri
   end

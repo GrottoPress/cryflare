@@ -1,5 +1,5 @@
 struct Cryflare::AccountMember
-  include JSON::Serializable
+  include Hapi::Resource
 
   enum Status
     Accepted

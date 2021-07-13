@@ -1,5 +1,5 @@
 struct Cryflare::Zone::Owner
-  include JSON::Serializable
+  include Hapi::Resource
 
   enum Type
     User

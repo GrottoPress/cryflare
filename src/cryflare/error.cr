@@ -1,5 +1,5 @@
 struct Cryflare::Error
-  include JSON::Serializable
+  include Hapi::Resource
 
   getter code : Int32
   getter message : String

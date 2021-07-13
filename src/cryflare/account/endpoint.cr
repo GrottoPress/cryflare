@@ -1,13 +1,12 @@
 struct Cryflare::Account::Endpoint
-  def initialize(@cryflare : Cryflare)
-  end
+  include Hapi::Endpoint
 
   def replace(__ id : String, **params)
     yield replace(id, **params)
   end
 
   def replace(__ id : String, **params) : Item
-    @cryflare.put(
+    @client.put(
       "#{self.class.path}/#{id}",
       body: params.to_json
     ) do |response|
@@ -20,7 +19,7 @@ struct Cryflare::Account::Endpoint
   end
 
   def index(**params) : List
-    @cryflare.get(
+    @client.get(
       "#{self.class.path}?#{URI::Params.encode(params)}"
     ) do |response|
       List.from_json(response.body_io)
@@ -32,7 +31,7 @@ struct Cryflare::Account::Endpoint
   end
 
   def show(id : String) : Item
-    @cryflare.get("#{self.class.path}/#{id}") do |response|
+    @client.get("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end
   end
@@ -42,7 +41,7 @@ struct Cryflare::Account::Endpoint
   end
 
   def self.uri : URI
-    uri = Cryflare.base_uri
+    uri = Cryflare.uri
     uri.path = path
     uri
   end
