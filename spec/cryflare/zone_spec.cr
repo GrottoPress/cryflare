@@ -36,11 +36,11 @@ describe Cryflare::Zone::Endpoint do
             ],
             "plan": {
               "id": "e592fd9519420ba7405e1307bff33214",
-              "name": "Pro Plan",
-              "price": 20,
+              "name": "Free Plan",
+              "price": 0,
               "currency": "USD",
-              "frequency": "monthly",
-              "legacy_id": "pro",
+              "frequency": "",
+              "legacy_id": "free",
               "is_subscribed": true,
               "can_subscribe": true
             },
@@ -74,6 +74,7 @@ describe Cryflare::Zone::Endpoint do
       client.zones.create(name: "example.tld") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::Zone)
+        response.result.try &.plan.try(&.frequency.none?).should be_true
       end
     end
   end

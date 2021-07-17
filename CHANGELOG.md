@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Forward missing `Cryflare` methods to *Crystal*'s `HTTP::Client`
 - Replace references to `HTTP::Params` with `URI::Params`. [[Ref]](https://github.com/crystal-lang/crystal/pull/10098)
 - Integrate with [*Hapi*](https://github.com/GrottoPress/hapi)
+- Return enum (instead of string) for `Cryflare::Zone::Plan#frequency`
 
 ## [0.3.0] - 2021-06-12
 
