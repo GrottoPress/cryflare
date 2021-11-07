@@ -1,6 +1,6 @@
 # Cryflare
 
-*Cryflare* is a low-level API client for *Cloudflare&reg;* v4. It features an intuitive interface that maps perfectly to the *Cloudflare* API.
+*Cryflare* is a low-level API client for *Cloudflare&reg;* v4. It features an intuitive interface that maps directly to the *Cloudflare* API.
 
 ### Usage Examples
 
