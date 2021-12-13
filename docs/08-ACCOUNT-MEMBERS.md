@@ -62,7 +62,7 @@ See https://api.cloudflare.com/#account-members-properties for the raw JSON sche
 1. Remove account member:
 
    ```crystal
-   client.account_members.destroy("account-id", "member-id") do |response|
+   client.account_members.delete("account-id", "member-id") do |response|
      if response.success?
        response.result.try do |account_member|
          puts account_member.id

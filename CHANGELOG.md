@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Add support for *Crystal* v1.2
 
+### Changed
+- Rename `#destroy` endpoint methods to `#delete`
+
 ## [0.4.0] - 2021-08-17
 
 ### Changed

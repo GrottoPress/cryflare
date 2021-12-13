@@ -13,7 +13,7 @@ See https://api.cloudflare.com/#user-s-organizations-properties for the raw JSON
 1. Leave organization:
 
    ```crystal
-   client.user_organizations.destroy("organization-id") do |response|
+   client.user_organizations.delete("organization-id") do |response|
      if response.success?
        response.result.try do |user_organization|
          puts user_organization.id

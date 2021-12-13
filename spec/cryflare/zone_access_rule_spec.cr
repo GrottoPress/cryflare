@@ -121,7 +121,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.zone_access_rules.destroy(
+      client.zone_access_rules.delete(
         "a1b2c3",
         "d4e5f6",
         cascade: "basic"

@@ -94,7 +94,7 @@ See https://api.cloudflare.com/#dns-records-for-a-zone-properties for the raw JS
 1. Delete DNS record:
 
    ```crystal
-   client.dns_records.destroy("zone-id", "dns-record-id") do |response|
+   client.dns_records.delete("zone-id", "dns-record-id") do |response|
      if response.success?
        response.result.try do |dns_record|
          puts dns_record.id

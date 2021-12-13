@@ -62,7 +62,7 @@ See https://api.cloudflare.com/#firewall-access-rule-for-a-zone-properties for t
 1. Remove access rule:
 
    ```crystal
-   client.zone_access_rules.destroy(
+   client.zone_access_rules.delete(
      "zone-id",
      "rule-id",
      cascade: "basic"

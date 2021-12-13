@@ -27,11 +27,11 @@ struct Cryflare::AccountAccessRule::Endpoint
     end
   end
 
-  def destroy(account_id : String, id : String)
-    yield destroy(account_id, id)
+  def delete(account_id : String, id : String)
+    yield delete(account_id, id)
   end
 
-  def destroy(account_id : String, id : String) : Item
+  def delete(account_id : String, id : String) : Item
     @client.delete("#{self.class.path(account_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end

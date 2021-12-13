@@ -62,7 +62,7 @@ See https://api.cloudflare.com/#account-level-firewall-access-rule-properties fo
 1. Remove access rule:
 
    ```crystal
-   client.account_access_rules.destroy("account-id", "rule-id") do |response|
+   client.account_access_rules.delete("account-id", "rule-id") do |response|
      if response.success?
        response.result.try do |access_rule|
          puts access_rule.id

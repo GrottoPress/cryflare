@@ -21,7 +21,7 @@ describe Cryflare::UserOrganization::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.user_organizations.destroy("a1b2c3") do |response|
+      client.user_organizations.delete("a1b2c3") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::UserOrganization)
       end

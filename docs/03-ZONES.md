@@ -57,7 +57,7 @@ See https://api.cloudflare.com/#zone-properties for the raw JSON schema.
 1. Delete a zone:
 
    ```crystal
-   client.zones.destroy("zone-id") do |response|
+   client.zones.delete("zone-id") do |response|
      if response.success?
        response.result.try do |zone|
          puts zone.id

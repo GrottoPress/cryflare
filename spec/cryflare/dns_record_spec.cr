@@ -172,7 +172,7 @@ describe Cryflare::DnsRecord::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.dns_records.destroy("a1b2c3", "d1e2f3") do |response|
+      client.dns_records.delete("a1b2c3", "d1e2f3") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::DnsRecord)
       end

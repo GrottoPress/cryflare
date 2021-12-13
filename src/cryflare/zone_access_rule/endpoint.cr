@@ -27,11 +27,11 @@ struct Cryflare::ZoneAccessRule::Endpoint
     end
   end
 
-  def destroy(zone_id : String, id : String, **params)
-    yield destroy(zone_id, id, **params)
+  def delete(zone_id : String, id : String, **params)
+    yield delete(zone_id, id, **params)
   end
 
-  def destroy(zone_id : String, id : String, **params) : Item
+  def delete(zone_id : String, id : String, **params) : Item
     @client.delete(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json

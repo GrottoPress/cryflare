@@ -57,7 +57,7 @@ See https://api.cloudflare.com/#user-level-firewall-access-rule-properties for t
 1. Remove access rule:
 
    ```crystal
-   client.user_access_rules.destroy("rule-id") do |response|
+   client.user_access_rules.delete("rule-id") do |response|
      if response.success?
        response.result.try do |access_rule|
          puts access_rule.id

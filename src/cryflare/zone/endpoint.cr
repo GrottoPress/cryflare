@@ -24,11 +24,11 @@ struct Cryflare::Zone::Endpoint
     end
   end
 
-  def destroy(id : String)
-    yield destroy(id)
+  def delete(id : String)
+    yield delete(id)
   end
 
-  def destroy(id : String) : Item
+  def delete(id : String) : Item
     @client.delete("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end

@@ -84,7 +84,7 @@ See https://api.cloudflare.com/#filters-properties for the raw JSON schema.
 1. Delete single filter:
 
    ```crystal
-   client.filters.destroy("zone-id", "filter-id") do |response|
+   client.filters.delete("zone-id", "filter-id") do |response|
      if response.success?
        response.result.try do |filter|
          puts filter.id

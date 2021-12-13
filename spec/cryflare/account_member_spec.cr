@@ -220,7 +220,7 @@ describe Cryflare::AccountMember::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.account_members.destroy("a1b2c3", "d4e5f6") do |response|
+      client.account_members.delete("a1b2c3", "d4e5f6") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::AccountMember)
       end

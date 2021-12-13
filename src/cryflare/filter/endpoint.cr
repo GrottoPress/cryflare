@@ -37,11 +37,11 @@ struct Cryflare::Filter::Endpoint
     end
   end
 
-  def destroy(zone_id : String, id : String)
-    yield destroy(zone_id, id)
+  def delete(zone_id : String, id : String)
+    yield delete(zone_id, id)
   end
 
-  def destroy(zone_id : String, id : String) : Item
+  def delete(zone_id : String, id : String) : Item
     @client.delete("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end

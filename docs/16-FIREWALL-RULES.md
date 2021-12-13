@@ -84,7 +84,7 @@ See https://api.cloudflare.com/#firewall-rules-properties for the raw JSON schem
 1. Delete single firewall rule:
 
    ```crystal
-   client.firewall_rules.destroy("zone-id", "rule-id") do |response|
+   client.firewall_rules.delete("zone-id", "rule-id") do |response|
      if response.success?
        response.result.try do |firewall_rule|
          puts firewall_rule.id
