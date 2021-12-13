@@ -131,7 +131,7 @@ See https://api.cloudflare.com/#dns-records-for-a-zone-properties for the raw JS
 1. Get single DNS record:
 
    ```crystal
-   client.dns_records.show("zone-id", "dns-record-id") do |response|
+   client.dns_records.fetch("zone-id", "dns-record-id") do |response|
      if response.success?
        response.result.try do |dns_record|
          puts dns_record.modified_on

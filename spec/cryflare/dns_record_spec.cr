@@ -266,7 +266,7 @@ describe Cryflare::DnsRecord::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.dns_records.show("a1b2c3", "d1e2f3") do |response|
+      client.dns_records.fetch("a1b2c3", "d1e2f3") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::DnsRecord)
       end

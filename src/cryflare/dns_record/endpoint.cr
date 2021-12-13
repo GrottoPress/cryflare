@@ -65,11 +65,11 @@ struct Cryflare::DnsRecord::Endpoint
     end
   end
 
-  def show(zone_id : String, id : String)
-    yield show(zone_id, id)
+  def fetch(zone_id : String, id : String)
+    yield fetch(zone_id, id)
   end
 
-  def show(zone_id : String, id : String) : Item
+  def fetch(zone_id : String, id : String) : Item
     @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end

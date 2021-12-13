@@ -126,7 +126,7 @@ See https://api.cloudflare.com/#firewall-rules-properties for the raw JSON schem
 1. Get single firewall rule:
 
    ```crystal
-   client.firewall_rules.show("zone-id", "rule-id") do |response|
+   client.firewall_rules.fetch("zone-id", "rule-id") do |response|
      if response.success?
        response.result.try do |firewall_rule|
          puts firewall_rule.id

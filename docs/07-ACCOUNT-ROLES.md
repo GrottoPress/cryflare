@@ -33,7 +33,7 @@ See https://api.cloudflare.com/#account-roles-properties for the raw JSON schema
 1. Get single account role:
 
    ```crystal
-   client.account_roles.show("account-id", "role-id") do |response|
+   client.account_roles.fetch("account-id", "role-id") do |response|
      if response.success?
        response.result.try do |account_role|
          puts account_role.id

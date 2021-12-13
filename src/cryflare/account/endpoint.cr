@@ -26,11 +26,11 @@ struct Cryflare::Account::Endpoint
     end
   end
 
-  def show(id : String)
-    yield show(id)
+  def fetch(id : String)
+    yield fetch(id)
   end
 
-  def show(id : String) : Item
+  def fetch(id : String) : Item
     @client.get("#{self.class.path}/#{id}") do |response|
       Item.from_json(response.body_io)
     end

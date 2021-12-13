@@ -62,7 +62,7 @@ See https://api.cloudflare.com/#accounts-properties for the raw JSON schema.
 1. Get single account:
 
    ```crystal
-   client.accounts.show("account-id") do |response|
+   client.accounts.fetch("account-id") do |response|
      if response.success?
        response.result.try do |account|
          puts account.id

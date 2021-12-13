@@ -110,7 +110,7 @@ describe Cryflare::ZoneSetting::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.zone_settings.show("a1b2c3", "advanced_ddos") do |response|
+      client.zone_settings.fetch("a1b2c3", "advanced_ddos") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::ZoneSetting)
       end

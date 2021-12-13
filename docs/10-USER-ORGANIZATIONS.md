@@ -53,7 +53,7 @@ See https://api.cloudflare.com/#user-s-organizations-properties for the raw JSON
 1. Get single organization:
 
    ```crystal
-   client.user_organizations.show("organization-id") do |response|
+   client.user_organizations.fetch("organization-id") do |response|
      if response.success?
        response.result.try do |user_organization|
          puts user_organization.id

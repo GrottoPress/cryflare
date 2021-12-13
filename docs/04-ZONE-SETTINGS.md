@@ -83,7 +83,7 @@ See https://api.cloudflare.com/#zone-settings-properties for the raw JSON schema
 1. Get a single setting for a zone:
 
    ```crystal
-   client.zone_settings.show("zone-id", "zone-setting-id") do |response|
+   client.zone_settings.fetch("zone-id", "zone-setting-id") do |response|
      if response.success?
        response.result.try do |zone_setting|
          puts zone_setting.id

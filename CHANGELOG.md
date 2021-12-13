@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Rename `#destroy` endpoint methods to `#delete`
 - Rename `#index` endpoint methods to `#list`
+- Rename `#show` endpoint methods to `#fetch`
 
 ## [0.4.0] - 2021-08-17
 

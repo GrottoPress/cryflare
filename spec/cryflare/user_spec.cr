@@ -69,7 +69,7 @@ describe Cryflare::User::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.user.show do |response|
+      client.user.fetch do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::User)
       end

@@ -92,7 +92,7 @@ describe Cryflare::Account::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.accounts.show("a1b2c3") do |response|
+      client.accounts.fetch("a1b2c3") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::Account)
       end

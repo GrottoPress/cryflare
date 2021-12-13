@@ -33,7 +33,7 @@ See https://api.cloudflare.com/#user-properties for the raw JSON schema.
 1. Get user details:
 
    ```crystal
-   client.users.show do |response|
+   client.users.fetch do |response|
      if response.success?
        response.result.try do |user|
          puts user.telephone

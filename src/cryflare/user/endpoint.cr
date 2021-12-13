@@ -11,11 +11,11 @@ struct Cryflare::User::Endpoint
     end
   end
 
-  def show
-    yield show
+  def fetch
+    yield fetch
   end
 
-  def show : Item
+  def fetch : Item
     @client.get(self.class.path) do |response|
       Item.from_json(response.body_io)
     end

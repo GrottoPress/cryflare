@@ -25,7 +25,7 @@ describe Cryflare::CloudflareIp::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.cloudflare_ips.show do |response|
+      client.cloudflare_ips.fetch do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::CloudflareIp)
       end

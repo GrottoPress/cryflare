@@ -329,7 +329,7 @@ describe Cryflare::Zone::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.zones.show("a1b2c3") do |response|
+      client.zones.fetch("a1b2c3") do |response|
         response.success?.should be_true
         response.result.should be_a(Cryflare::Zone)
       end

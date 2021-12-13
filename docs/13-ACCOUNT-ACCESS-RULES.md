@@ -102,7 +102,7 @@ See https://api.cloudflare.com/#account-level-firewall-access-rule-properties fo
 1. Show access rule:
 
    ```crystal
-   client.account_access_rules.show("account-id", "rule-id") do |response|
+   client.account_access_rules.fetch("account-id", "rule-id") do |response|
      if response.success?
        response.result.try do |access_rule|
          puts access_rule.configuration.try &.target

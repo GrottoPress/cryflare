@@ -102,7 +102,7 @@ See https://api.cloudflare.com/#zone-properties for the raw JSON schema.
 1. Get single zone:
 
    ```crystal
-   client.zones.show("zone-id") do |response|
+   client.zones.fetch("zone-id") do |response|
      if response.success?
        response.result.try do |zone|
          puts zone.paused?

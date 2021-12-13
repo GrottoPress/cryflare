@@ -11,11 +11,11 @@ struct Cryflare::AccountRole::Endpoint
     end
   end
 
-  def show(account_id : String, id : String)
-    yield show(account_id, id)
+  def fetch(account_id : String, id : String)
+    yield fetch(account_id, id)
   end
 
-  def show(account_id : String, id : String) : Item
+  def fetch(account_id : String, id : String) : Item
     @client.get("#{self.class.path(account_id)}/#{id}") do |response|
       Item.from_json(response.body_io)
     end

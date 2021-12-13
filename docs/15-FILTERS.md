@@ -122,7 +122,7 @@ See https://api.cloudflare.com/#filters-properties for the raw JSON schema.
 1. Get single filter:
 
    ```crystal
-   client.filters.show("zone-id", "filter-id") do |response|
+   client.filters.fetch("zone-id", "filter-id") do |response|
      if response.success?
        response.result.try do |filter|
          puts filter.id

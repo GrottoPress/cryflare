@@ -13,7 +13,7 @@ See https://api.cloudflare.com/#cloudflare-ips-properties for the raw JSON schem
 1. Get Cloudflare IP addresses:
 
    ```crystal
-   client.cloudflare_ips.show do |response|
+   client.cloudflare_ips.fetch do |response|
      if response.success?
        response.result.try do |cloudflare_ips|
          cloudflare_ips.ipv4_cidrs.each { |ip| puts ip }
