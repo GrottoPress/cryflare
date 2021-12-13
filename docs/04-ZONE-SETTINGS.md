@@ -63,7 +63,7 @@ See https://api.cloudflare.com/#zone-settings-properties for the raw JSON schema
 1. Get all settings for a zone:
 
    ```crystal
-   client.zone_settings.index("zone-id") do |response|
+   client.zone_settings.list("zone-id") do |response|
      if response.success?
        response.result.try &.each do |zone_setting|
          puts zone_setting.id
@@ -102,11 +102,11 @@ See https://api.cloudflare.com/#zone-settings-properties for the raw JSON schema
 1. Get a single zone by name, and get its settings:
 
    ```crystal
-   client.zones.index(name: "example.tld") do |response|
+   client.zones.list(name: "example.tld") do |response|
      return unless response.errors.empty?
 
      response.result.try &.first?.try do |zone|
-       stg_response = client.zone_settings.index(zone.id)
+       stg_response = client.zone_settings.list(zone.id)
 
        stg_response.result.try &.each do |zone_setting|
          puts zone_setting.id

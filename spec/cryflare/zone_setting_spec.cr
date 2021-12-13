@@ -80,7 +80,7 @@ describe Cryflare::ZoneSetting::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.zone_settings.index("a1b2c3") do |response|
+      client.zone_settings.list("a1b2c3") do |response|
         response.success?.should be_true
         response.result.try &.should(be_a Array(Cryflare::ZoneSetting))
       end

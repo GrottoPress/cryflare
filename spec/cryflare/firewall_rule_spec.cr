@@ -274,7 +274,7 @@ describe Cryflare::FirewallRule::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.firewall_rules.index("a1b2c3", paused: "true") do |response|
+      client.firewall_rules.list("a1b2c3", paused: "true") do |response|
         response.success?.should be_true
         response.result.should be_a(Array(Cryflare::FirewallRule))
       end

@@ -62,7 +62,7 @@ describe Cryflare::Account::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.accounts.index(page: "1", per_page: "20") do |response|
+      client.accounts.list(page: "1", per_page: "20") do |response|
         response.success?.should be_true
         response.result.try &.should(be_a Array(Cryflare::Account))
       end

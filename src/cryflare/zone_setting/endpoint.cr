@@ -27,11 +27,11 @@ struct Cryflare::ZoneSetting::Endpoint
     end
   end
 
-  def index(zone_id : String)
-    yield index(zone_id)
+  def list(zone_id : String)
+    yield list(zone_id)
   end
 
-  def index(zone_id : String) : List
+  def list(zone_id : String) : List
     @client.get("#{self.class.path(zone_id)}") do |response|
       List.from_json(response.body_io)
     end

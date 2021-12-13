@@ -167,7 +167,7 @@ describe Cryflare::UserAccessRule::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.user_access_rules.index(notes: "my note") do |response|
+      client.user_access_rules.list(notes: "my note") do |response|
         response.success?.should be_true
         response.result.should be_a(Array(Cryflare::UserAccessRule))
       end

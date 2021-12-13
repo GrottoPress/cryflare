@@ -164,7 +164,7 @@ describe Cryflare::Filter::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.filters.index("a1b2c3", paused: "true") do |response|
+      client.filters.list("a1b2c3", paused: "true") do |response|
         response.success?.should be_true
         response.result.should be_a(Array(Cryflare::Filter))
       end

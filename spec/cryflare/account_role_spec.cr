@@ -75,7 +75,7 @@ describe Cryflare::AccountRole::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.account_roles.index("a1b2c3") do |response|
+      client.account_roles.list("a1b2c3") do |response|
         response.success?.should be_true
         response.result.try &.should(be_a Array(Cryflare::AccountRole))
       end

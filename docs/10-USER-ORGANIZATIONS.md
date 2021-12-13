@@ -33,7 +33,7 @@ See https://api.cloudflare.com/#user-s-organizations-properties for the raw JSON
 1. Get all of your organizations:
 
    ```crystal
-   client.user_organizations.index(status: "member") do |response|
+   client.user_organizations.list(status: "member") do |response|
      if response.success?
        response.result.try &.each do |user_organization|
          puts user_organization.id

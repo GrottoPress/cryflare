@@ -79,7 +79,7 @@ See https://api.cloudflare.com/#account-level-firewall-access-rule-properties fo
 1. Get all access rules:
 
    ```crystal
-   client.account_access_rules.index(
+   client.account_access_rules.list(
      "account-id",
      mode: "js_challenge"
    ) do |response|

@@ -60,7 +60,7 @@ describe Cryflare::UserOrganization::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.user_organizations.index(
+      client.user_organizations.list(
         name: "GrottoPress",
         status: "member"
       ) do |response|

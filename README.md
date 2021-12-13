@@ -11,7 +11,7 @@ client = Cryflare.new(email: "cloudflare-email", key: "cloudflare-api-key")
 
 1. Get zone by name
    ```crystal
-   client.zones.index(name: "grottopress.com") do |response|
+   client.zones.list(name: "grottopress.com") do |response|
      if response.success?
        response.result.try &.first?.try do |zone|
          puts zone.id

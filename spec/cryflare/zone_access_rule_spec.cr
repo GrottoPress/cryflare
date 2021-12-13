@@ -175,7 +175,7 @@ describe Cryflare::ZoneAccessRule::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.zone_access_rules.index(
+      client.zone_access_rules.list(
         "a1b2c3",
         mode: "js_challenge"
       ) do |response|

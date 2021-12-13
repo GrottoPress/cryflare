@@ -79,7 +79,7 @@ See https://api.cloudflare.com/#account-members-properties for the raw JSON sche
 1. Get all account members:
 
    ```crystal
-   client.account_members.index(
+   client.account_members.list(
      "account-id",
      per_page: "20",
      direction: "desc"

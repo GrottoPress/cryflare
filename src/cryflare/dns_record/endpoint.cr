@@ -53,11 +53,11 @@ struct Cryflare::DnsRecord::Endpoint
     end
   end
 
-  def index(zone_id : String, **params)
-    yield index(zone_id, **params)
+  def list(zone_id : String, **params)
+    yield list(zone_id, **params)
   end
 
-  def index(zone_id : String, **params) : List
+  def list(zone_id : String, **params) : List
     @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|

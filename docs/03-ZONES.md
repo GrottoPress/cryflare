@@ -74,7 +74,7 @@ See https://api.cloudflare.com/#zone-properties for the raw JSON schema.
 1. Get all zones:
 
    ```crystal
-   client.zones.index(order: "name", status: "active") do |response|
+   client.zones.list(order: "name", status: "active") do |response|
      if response.success?
        response.result.try &.each do |zone|
          zone.original_name_servers.try &.each { |ns| puts ns }
@@ -94,7 +94,7 @@ See https://api.cloudflare.com/#zone-properties for the raw JSON schema.
    You may get a single zone by name, by passing the `name` parameter:
 
    ```crystal
-   client.zones.index(name: "example.tld") do |response|
+   client.zones.list(name: "example.tld") do |response|
      puts response.result.try &.first?.try &.id
    end
    ```

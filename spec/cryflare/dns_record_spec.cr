@@ -219,7 +219,7 @@ describe Cryflare::DnsRecord::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.dns_records.index(
+      client.dns_records.list(
         "a1b2c3",
         type: "A",
         name: "example.com"

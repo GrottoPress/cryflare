@@ -83,7 +83,7 @@ See https://api.cloudflare.com/#firewall-access-rule-for-a-zone-properties for t
 1. Get all account members:
 
    ```crystal
-   client.zone_access_rules.index("zone-id", mode: "js_challenge") do |response|
+   client.zone_access_rules.list("zone-id", mode: "js_challenge") do |response|
      if response.success?
        response.result.try &.each do |access_rule|
          puts access_rule.created_on

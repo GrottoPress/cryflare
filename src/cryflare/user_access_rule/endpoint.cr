@@ -34,11 +34,11 @@ struct Cryflare::UserAccessRule::Endpoint
     end
   end
 
-  def index(**params)
-    yield index(**params)
+  def list(**params)
+    yield list(**params)
   end
 
-  def index(**params) : List
+  def list(**params) : List
     @client.get(
       "#{self.class.path}?#{URI::Params.encode(params)}"
     ) do |response|

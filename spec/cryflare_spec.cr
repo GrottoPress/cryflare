@@ -7,7 +7,7 @@ describe Cryflare do
 
       client = Cryflare.new(token: token)
 
-      client.zones.index do |response|
+      client.zones.list do |response|
         response.success?.should be_true
         response.result.try &.should(be_a Array(Cryflare::Zone))
       end

@@ -172,7 +172,7 @@ describe Cryflare::AccountAccessRule::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.account_access_rules.index("a1b2c3", per_page: "30") do |response|
+      client.account_access_rules.list("a1b2c3", per_page: "30") do |response|
         response.success?.should be_true
         response.result.should be_a(Array(Cryflare::AccountAccessRule))
       end

@@ -74,7 +74,7 @@ See https://api.cloudflare.com/#user-level-firewall-access-rule-properties for t
 1. Get all access rules:
 
    ```crystal
-   client.user_access_rules.index(mode: "js_challenge") do |response|
+   client.user_access_rules.list(mode: "js_challenge") do |response|
      if response.success?
        response.result.try &.each do |access_rule|
          puts access_rule.created_on

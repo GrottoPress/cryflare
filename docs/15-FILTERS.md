@@ -102,7 +102,7 @@ See https://api.cloudflare.com/#filters-properties for the raw JSON schema.
 1. Get all filters:
 
    ```crystal
-   client.filters.index("zone-id", paused: "true", per_page: "25") do |response|
+   client.filters.list("zone-id", paused: "true", per_page: "25") do |response|
      if response.success?
        response.result.try &.each do |filter|
          puts filter.id

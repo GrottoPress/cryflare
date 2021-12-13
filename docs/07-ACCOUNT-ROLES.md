@@ -13,7 +13,7 @@ See https://api.cloudflare.com/#account-roles-properties for the raw JSON schema
 1. Get all account roles:
 
    ```crystal
-   client.account_roles.index("account-id") do |response|
+   client.account_roles.list("account-id") do |response|
      if response.success?
        response.result.try &.each do |account_role|
          puts account_role.id

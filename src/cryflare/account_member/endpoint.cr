@@ -37,11 +37,11 @@ struct Cryflare::AccountMember::Endpoint
     end
   end
 
-  def index(account_id : String, **params)
-    yield index(account_id, **params)
+  def list(account_id : String, **params)
+    yield list(account_id, **params)
   end
 
-  def index(account_id : String, **params) : List
+  def list(account_id : String, **params) : List
     @client.get(
       "#{self.class.path(account_id)}?#{URI::Params.encode(params)}"
     ) do |response|

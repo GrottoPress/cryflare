@@ -111,7 +111,7 @@ See https://api.cloudflare.com/#dns-records-for-a-zone-properties for the raw JS
 1. Get all DNS records:
 
    ```crystal
-   client.dns_records.index("zone-id", per_page: 10) do |response|
+   client.dns_records.list("zone-id", per_page: 10) do |response|
      if response.success?
        response.result.try &.each do |dns_record|
          puts dns_record.created_on
@@ -151,11 +151,11 @@ See https://api.cloudflare.com/#dns-records-for-a-zone-properties for the raw JS
 1. Get a single zone by name, and get its DNS records:
 
    ```crystal
-   client.zones.index(name: "example.tld") do |response|
+   client.zones.list(name: "example.tld") do |response|
      return unless response.errors.empty?
 
      response.result.try &.first?.try do |zone|
-       dns_response = client.dns_records.index(zone.id, per_page: 100)
+       dns_response = client.dns_records.list(zone.id, per_page: 100)
 
        dns_response.result.try &.each do |dns_record|
          puts dns_record.id

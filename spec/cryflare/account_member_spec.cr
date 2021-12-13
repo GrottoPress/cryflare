@@ -317,7 +317,7 @@ describe Cryflare::AccountMember::Endpoint do
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
-      client.account_members.index(
+      client.account_members.list(
         "a1b2c3",
         per_page: "20",
         direction: "desc"

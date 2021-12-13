@@ -42,7 +42,7 @@ See https://api.cloudflare.com/#accounts-properties for the raw JSON schema.
 1. Get all accounts:
 
    ```crystal
-   client.accounts.index(per_page: 20, page: 2) do |response|
+   client.accounts.list(per_page: 20, page: 2) do |response|
      if response.success?
        response.result.try &.each do |account|
          puts account.id

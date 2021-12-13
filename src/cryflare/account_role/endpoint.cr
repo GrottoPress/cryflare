@@ -1,11 +1,11 @@
 struct Cryflare::AccountRole::Endpoint
   include Hapi::Endpoint
 
-  def index(account_id : String)
-    yield index(account_id)
+  def list(account_id : String)
+    yield list(account_id)
   end
 
-  def index(account_id : String) : List
+  def list(account_id : String) : List
     @client.get(self.class.path account_id) do |response|
       List.from_json(response.body_io)
     end

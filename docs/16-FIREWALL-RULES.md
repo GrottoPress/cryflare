@@ -102,7 +102,7 @@ See https://api.cloudflare.com/#firewall-rules-properties for the raw JSON schem
 1. Get all firewall rules:
 
    ```crystal
-   client.firewall_rules.index(
+   client.firewall_rules.list(
      "zone-id",
      paused: "true",
      per_page: "25"
