@@ -6,12 +6,8 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def create(zone_id : String, **params) : Item
-    @client.post(
-      self.class.path(zone_id),
-      body: params.to_json
-    ) do |response|
-      Item.new(response)
-    end
+    response = @client.post(self.class.path(zone_id), body: params.to_json)
+    Item.new(response)
   end
 
   def update(zone_id : String, id : String, **params)
@@ -19,12 +15,12 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def update(zone_id : String, id : String, **params) : Item
-    @client.patch(
+    response = @client.patch(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
-    ) do |response|
-      Item.new(response)
-    end
+    )
+
+    Item.new(response)
   end
 
   def delete(zone_id : String, id : String, **params)
@@ -32,12 +28,12 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def delete(zone_id : String, id : String, **params) : Item
-    @client.delete(
+    response = @client.delete(
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
-    ) do |response|
-      Item.new(response)
-    end
+    )
+
+    Item.new(response)
   end
 
   def list(zone_id : String, **params)
@@ -45,11 +41,11 @@ struct Cryflare::ZoneAccessRule::Endpoint
   end
 
   def list(zone_id : String, **params) : List
-    @client.get(
+    response = @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
-    ) do |response|
-      List.new(response)
-    end
+    )
+
+    List.new(response)
   end
 
   def self.path(zone_id : String) : String

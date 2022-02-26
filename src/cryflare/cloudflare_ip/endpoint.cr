@@ -6,9 +6,8 @@ struct Cryflare::CloudflareIp::Endpoint
   end
 
   def fetch : Item
-    @client.get(self.class.path) do |response|
-      Item.new(response)
-    end
+    response = @client.get(self.class.path)
+    Item.new(response)
   end
 
   def self.path : String

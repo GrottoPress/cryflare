@@ -6,12 +6,8 @@ struct Cryflare::AccountAccessRule::Endpoint
   end
 
   def create(account_id : String, **params) : Item
-    @client.post(
-      self.class.path(account_id),
-      body: params.to_json
-    ) do |response|
-      Item.new(response)
-    end
+    response = @client.post(self.class.path(account_id), body: params.to_json)
+    Item.new(response)
   end
 
   def update(account_id : String, __ id : String, **params)
@@ -19,12 +15,12 @@ struct Cryflare::AccountAccessRule::Endpoint
   end
 
   def update(account_id : String, __ id : String, **params) : Item
-    @client.patch(
+    response = @client.patch(
       "#{self.class.path(account_id)}/#{id}",
       body: params.to_json
-    ) do |response|
-      Item.new(response)
-    end
+    )
+
+    Item.new(response)
   end
 
   def delete(account_id : String, id : String)
@@ -32,9 +28,8 @@ struct Cryflare::AccountAccessRule::Endpoint
   end
 
   def delete(account_id : String, id : String) : Item
-    @client.delete("#{self.class.path(account_id)}/#{id}") do |response|
-      Item.new(response)
-    end
+    response = @client.delete("#{self.class.path(account_id)}/#{id}")
+    Item.new(response)
   end
 
   def list(account_id : String, **params)
@@ -42,11 +37,11 @@ struct Cryflare::AccountAccessRule::Endpoint
   end
 
   def list(account_id : String, **params) : List
-    @client.get(
+    response = @client.get(
       "#{self.class.path(account_id)}?#{URI::Params.encode(params)}"
-    ) do |response|
-      List.new(response)
-    end
+    )
+
+    List.new(response)
   end
 
   def fetch(account_id : String, id : String)
@@ -54,9 +49,8 @@ struct Cryflare::AccountAccessRule::Endpoint
   end
 
   def fetch(account_id : String, id : String) : Item
-    @client.get("#{self.class.path(account_id)}/#{id}") do |response|
-      Item.new(response)
-    end
+    response = @client.get("#{self.class.path(account_id)}/#{id}")
+    Item.new(response)
   end
 
   def self.path(account_id : String) : String

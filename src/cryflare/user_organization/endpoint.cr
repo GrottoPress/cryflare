@@ -6,9 +6,8 @@ struct Cryflare::UserOrganization::Endpoint
   end
 
   def delete(id : String) : Item
-    @client.delete("#{self.class.path}/#{id}") do |response|
-      Item.new(response)
-    end
+    response = @client.delete("#{self.class.path}/#{id}")
+    Item.new(response)
   end
 
   def list(**params)
@@ -16,11 +15,8 @@ struct Cryflare::UserOrganization::Endpoint
   end
 
   def list(**params) : List
-    @client.get(
-      "#{self.class.path}?#{URI::Params.encode(params)}"
-    ) do |response|
-      List.new(response)
-    end
+    response = @client.get("#{self.class.path}?#{URI::Params.encode(params)}")
+    List.new(response)
   end
 
   def fetch(id : String)
@@ -28,9 +24,8 @@ struct Cryflare::UserOrganization::Endpoint
   end
 
   def fetch(id : String) : Item
-    @client.get("#{self.class.path}/#{id}") do |response|
-      Item.new(response)
-    end
+    response = @client.get("#{self.class.path}/#{id}")
+    Item.new(response)
   end
 
   def self.path : String

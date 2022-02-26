@@ -6,9 +6,8 @@ struct Cryflare::AccountRole::Endpoint
   end
 
   def list(account_id : String) : List
-    @client.get(self.class.path account_id) do |response|
-      List.new(response)
-    end
+    response = @client.get(self.class.path account_id)
+    List.new(response)
   end
 
   def fetch(account_id : String, id : String)
@@ -16,9 +15,8 @@ struct Cryflare::AccountRole::Endpoint
   end
 
   def fetch(account_id : String, id : String) : Item
-    @client.get("#{self.class.path(account_id)}/#{id}") do |response|
-      Item.new(response)
-    end
+    response = @client.get("#{self.class.path(account_id)}/#{id}")
+    Item.new(response)
   end
 
   def self.path(account_id : String) : String

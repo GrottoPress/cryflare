@@ -3,7 +3,7 @@ module Cryflare::Response
     getter raw : HTTP::Client::Response
 
     def initialize(@raw)
-      @resource = Resource.from_json(@raw.body_io)
+      @resource = Resource.from_json(@raw.body)
     end
 
     forward_missing_to @resource

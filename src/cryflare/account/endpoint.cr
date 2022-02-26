@@ -6,12 +6,8 @@ struct Cryflare::Account::Endpoint
   end
 
   def replace(__ id : String, **params) : Item
-    @client.put(
-      "#{self.class.path}/#{id}",
-      body: params.to_json
-    ) do |response|
-      Item.new(response)
-    end
+    response = @client.put("#{self.class.path}/#{id}", body: params.to_json)
+    Item.new(response)
   end
 
   def list(**params)
@@ -19,11 +15,8 @@ struct Cryflare::Account::Endpoint
   end
 
   def list(**params) : List
-    @client.get(
-      "#{self.class.path}?#{URI::Params.encode(params)}"
-    ) do |response|
-      List.new(response)
-    end
+    response = @client.get("#{self.class.path}?#{URI::Params.encode(params)}")
+    List.new(response)
   end
 
   def fetch(id : String)
@@ -31,9 +24,8 @@ struct Cryflare::Account::Endpoint
   end
 
   def fetch(id : String) : Item
-    @client.get("#{self.class.path}/#{id}") do |response|
-      Item.new(response)
-    end
+    response = @client.get("#{self.class.path}/#{id}")
+    Item.new(response)
   end
 
   def self.path : String
