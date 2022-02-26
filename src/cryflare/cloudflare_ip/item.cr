@@ -1,5 +1,7 @@
 struct Cryflare::CloudflareIp::Item
   include Response
 
-  getter result : CloudflareIp?
+  struct Resource
+    getter result : CloudflareIp?
+  end
 end

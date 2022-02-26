@@ -1,5 +1,7 @@
 struct Cryflare::Zone::List
   include Response
 
-  getter result : Array(Zone)?
+  struct Resource
+    getter result : Array(Zone)?
+  end
 end

@@ -1,5 +1,7 @@
 struct Cryflare::AccountMember::List
   include Response
 
-  getter result : Array(AccountMember)?
+  struct Resource
+    getter result : Array(AccountMember)?
+  end
 end

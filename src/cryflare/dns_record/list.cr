@@ -1,5 +1,7 @@
 struct Cryflare::DnsRecord::List
   include Response
 
-  getter result : Array(DnsRecord)?
+  struct Resource
+    getter result : Array(DnsRecord)?
+  end
 end

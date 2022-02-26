@@ -1,5 +1,7 @@
 struct Cryflare::UserOrganization::Item
   include Response
 
-  getter result : UserOrganization?
+  struct Resource
+    getter result : UserOrganization?
+  end
 end

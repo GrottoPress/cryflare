@@ -1,5 +1,7 @@
 struct Cryflare::FirewallRule::Item
   include Response
 
-  getter result : FirewallRule?
+  struct Resource
+    getter result : FirewallRule?
+  end
 end

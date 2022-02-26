@@ -1,5 +1,7 @@
 struct Cryflare::ZoneAccessRule::List
   include Response
 
-  getter result : Array(ZoneAccessRule)?
+  struct Resource
+    getter result : Array(ZoneAccessRule)?
+  end
 end

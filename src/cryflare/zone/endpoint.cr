@@ -7,7 +7,7 @@ struct Cryflare::Zone::Endpoint
 
   def create(**params) : Item
     @client.post(self.class.path, body: params.to_json) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -20,7 +20,7 @@ struct Cryflare::Zone::Endpoint
       "#{self.class.path}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -30,7 +30,7 @@ struct Cryflare::Zone::Endpoint
 
   def delete(id : String) : Item
     @client.delete("#{self.class.path}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -42,7 +42,7 @@ struct Cryflare::Zone::Endpoint
     @client.get(
       "#{self.class.path}?#{URI::Params.encode(params)}"
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -52,7 +52,7 @@ struct Cryflare::Zone::Endpoint
 
   def fetch(id : String) : Item
     @client.get("#{self.class.path}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -62,7 +62,7 @@ struct Cryflare::Zone::Endpoint
 
   def check_activation(id : String) : Item
     @client.put("#{self.class.path}/#{id}/activation_check") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -75,7 +75,7 @@ struct Cryflare::Zone::Endpoint
       "#{self.class.path}/#{id}/purge_cache",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 

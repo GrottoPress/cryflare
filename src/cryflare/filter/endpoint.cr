@@ -10,7 +10,7 @@ struct Cryflare::Filter::Endpoint
       self.class.path(zone_id),
       body: filters.to_json
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -20,7 +20,7 @@ struct Cryflare::Filter::Endpoint
 
   def replace(zone_id : String, filters : Array(NamedTuple)) : List
     @client.put(self.class.path(zone_id), body: filters.to_json) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -33,7 +33,7 @@ struct Cryflare::Filter::Endpoint
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -43,7 +43,7 @@ struct Cryflare::Filter::Endpoint
 
   def delete(zone_id : String, id : String) : Item
     @client.delete("#{self.class.path(zone_id)}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -55,7 +55,7 @@ struct Cryflare::Filter::Endpoint
     @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -65,7 +65,7 @@ struct Cryflare::Filter::Endpoint
 
   def fetch(zone_id : String, id : String) : Item
     @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 

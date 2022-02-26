@@ -10,7 +10,7 @@ struct Cryflare::AccountAccessRule::Endpoint
       self.class.path(account_id),
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -23,7 +23,7 @@ struct Cryflare::AccountAccessRule::Endpoint
       "#{self.class.path(account_id)}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -33,7 +33,7 @@ struct Cryflare::AccountAccessRule::Endpoint
 
   def delete(account_id : String, id : String) : Item
     @client.delete("#{self.class.path(account_id)}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -45,7 +45,7 @@ struct Cryflare::AccountAccessRule::Endpoint
     @client.get(
       "#{self.class.path(account_id)}?#{URI::Params.encode(params)}"
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -55,7 +55,7 @@ struct Cryflare::AccountAccessRule::Endpoint
 
   def fetch(account_id : String, id : String) : Item
     @client.get("#{self.class.path(account_id)}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 

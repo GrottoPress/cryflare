@@ -7,7 +7,7 @@ struct Cryflare::User::Endpoint
 
   def update(**params) : Item
     @client.patch(self.class.path, body: params.to_json) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -17,7 +17,7 @@ struct Cryflare::User::Endpoint
 
   def fetch : Item
     @client.get(self.class.path) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 

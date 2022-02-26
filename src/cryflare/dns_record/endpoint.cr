@@ -13,7 +13,7 @@ struct Cryflare::DnsRecord::Endpoint
       "#{self.class.path(zone_id)}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -26,7 +26,7 @@ struct Cryflare::DnsRecord::Endpoint
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -39,7 +39,7 @@ struct Cryflare::DnsRecord::Endpoint
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -49,7 +49,7 @@ struct Cryflare::DnsRecord::Endpoint
 
   def delete(zone_id : String, id : String) : Item
     @client.delete("#{self.class.path(zone_id)}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -61,7 +61,7 @@ struct Cryflare::DnsRecord::Endpoint
     @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -71,7 +71,7 @@ struct Cryflare::DnsRecord::Endpoint
 
   def fetch(zone_id : String, id : String) : Item
     @client.get("#{self.class.path(zone_id)}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 

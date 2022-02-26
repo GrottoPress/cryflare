@@ -10,7 +10,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
       self.class.path(zone_id),
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -23,7 +23,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -36,7 +36,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
       "#{self.class.path(zone_id)}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -48,7 +48,7 @@ struct Cryflare::ZoneAccessRule::Endpoint
     @client.get(
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 

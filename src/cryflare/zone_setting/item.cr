@@ -1,5 +1,7 @@
 struct Cryflare::ZoneSetting::Item
   include Response
 
-  getter result : ZoneSetting?
+  struct Resource
+    getter result : ZoneSetting?
+  end
 end

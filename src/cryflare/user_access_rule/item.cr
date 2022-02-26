@@ -1,5 +1,7 @@
 struct Cryflare::UserAccessRule::Item
   include Response
 
-  getter result : UserAccessRule?
+  struct Resource
+    getter result : UserAccessRule?
+  end
 end

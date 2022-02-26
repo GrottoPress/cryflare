@@ -10,7 +10,7 @@ struct Cryflare::Account::Endpoint
       "#{self.class.path}/#{id}",
       body: params.to_json
     ) do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
@@ -22,7 +22,7 @@ struct Cryflare::Account::Endpoint
     @client.get(
       "#{self.class.path}?#{URI::Params.encode(params)}"
     ) do |response|
-      List.from_json(response.body_io)
+      List.new(response)
     end
   end
 
@@ -32,7 +32,7 @@ struct Cryflare::Account::Endpoint
 
   def fetch(id : String) : Item
     @client.get("#{self.class.path}/#{id}") do |response|
-      Item.from_json(response.body_io)
+      Item.new(response)
     end
   end
 
