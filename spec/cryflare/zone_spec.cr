@@ -3,7 +3,7 @@ require "../spec_helper"
 describe Cryflare::Zone::Endpoint do
   describe "#create" do
     it "creates new zone" do
-      response_json = IO::Memory.new <<-JSON
+      body = <<-JSON
         {
           "success": true,
           "errors": [],
@@ -67,7 +67,7 @@ describe Cryflare::Zone::Endpoint do
 
       WebMock.stub(:post, "https://api.cloudflare.com/client/v4/zones")
         .with(body: %({"name":"example.tld"}))
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -81,71 +81,71 @@ describe Cryflare::Zone::Endpoint do
 
   describe "#update" do
     it "updates existing zone" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "023e105f4ecef8ad9ca31a8372d0c353",
-          "name": "example.com",
-          "development_mode": 7200,
-          "original_name_servers": [
-            "ns1.originaldnshost.com",
-            "ns2.originaldnshost.com"
-          ],
-          "original_registrar": "GoDaddy",
-          "original_dnshost": "NameCheap",
-          "created_on": "2014-01-01T05:20:00.12345Z",
-          "modified_on": "2014-01-01T05:20:00.12345Z",
-          "activated_on": "2014-01-02T00:01:00.12345Z",
-          "owner": {
-            "id": {},
-            "email": {},
-            "type": "user"
-          },
-          "account": {
-            "id": "01a7362d577a6c3019a474fd6f485823",
-            "name": "Demo Account"
-          },
-          "permissions": [
-            "#zone:read",
-            "#zone:edit"
-          ],
-          "plan": {
-            "id": "e592fd9519420ba7405e1307bff33214",
-            "name": "Pro Plan",
-            "price": 20,
-            "currency": "USD",
-            "frequency": "monthly",
-            "legacy_id": "pro",
-            "is_subscribed": true,
-            "can_subscribe": true
-          },
-          "plan_pending": {
-            "id": "e592fd9519420ba7405e1307bff33214",
-            "name": "Pro Plan",
-            "price": 20,
-            "currency": "USD",
-            "frequency": "monthly",
-            "legacy_id": "pro",
-            "is_subscribed": true,
-            "can_subscribe": true
-          },
-          "status": "active",
-          "paused": true,
-          "type": "full",
-          "name_servers": [
-            "tony.ns.cloudflare.com",
-            "woz.ns.cloudflare.com"
-          ]
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "id": "023e105f4ecef8ad9ca31a8372d0c353",
+            "name": "example.com",
+            "development_mode": 7200,
+            "original_name_servers": [
+              "ns1.originaldnshost.com",
+              "ns2.originaldnshost.com"
+            ],
+            "original_registrar": "GoDaddy",
+            "original_dnshost": "NameCheap",
+            "created_on": "2014-01-01T05:20:00.12345Z",
+            "modified_on": "2014-01-01T05:20:00.12345Z",
+            "activated_on": "2014-01-02T00:01:00.12345Z",
+            "owner": {
+              "id": {},
+              "email": {},
+              "type": "user"
+            },
+            "account": {
+              "id": "01a7362d577a6c3019a474fd6f485823",
+              "name": "Demo Account"
+            },
+            "permissions": [
+              "#zone:read",
+              "#zone:edit"
+            ],
+            "plan": {
+              "id": "e592fd9519420ba7405e1307bff33214",
+              "name": "Pro Plan",
+              "price": 20,
+              "currency": "USD",
+              "frequency": "monthly",
+              "legacy_id": "pro",
+              "is_subscribed": true,
+              "can_subscribe": true
+            },
+            "plan_pending": {
+              "id": "e592fd9519420ba7405e1307bff33214",
+              "name": "Pro Plan",
+              "price": 20,
+              "currency": "USD",
+              "frequency": "monthly",
+              "legacy_id": "pro",
+              "is_subscribed": true,
+              "can_subscribe": true
+            },
+            "status": "active",
+            "paused": true,
+            "type": "full",
+            "name_servers": [
+              "tony.ns.cloudflare.com",
+              "woz.ns.cloudflare.com"
+            ]
+          }
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(:patch, "https://api.cloudflare.com/client/v4/zones/a1b2c3")
         .with(body: %({"paused":true}))
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -158,19 +158,19 @@ describe Cryflare::Zone::Endpoint do
 
   describe "#destroy" do
     it "deletes zone" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "9a7806061c88ada191ed06f989cc3dac"
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "id": "9a7806061c88ada191ed06f989cc3dac"
+          }
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(:delete, "https://api.cloudflare.com/client/v4/zones/a1b2c3")
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -183,13 +183,91 @@ describe Cryflare::Zone::Endpoint do
 
   describe "#index" do
     it "lists zones" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": [
-          {
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": [
+            {
+              "id": "023e105f4ecef8ad9ca31a8372d0c353",
+              "name": "example.com",
+              "development_mode": 7200,
+              "original_name_servers": [
+                "ns1.originaldnshost.com",
+                "ns2.originaldnshost.com"
+              ],
+              "original_registrar": "GoDaddy",
+              "original_dnshost": "NameCheap",
+              "created_on": "2014-01-01T05:20:00.12345Z",
+              "modified_on": "2014-01-01T05:20:00.12345Z",
+              "activated_on": "2014-01-02T00:01:00.12345Z",
+              "owner": {
+                "id": {},
+                "email": {},
+                "type": "user"
+              },
+              "account": {
+                "id": "01a7362d577a6c3019a474fd6f485823",
+                "name": "Demo Account"
+              },
+              "permissions": [
+                "#zone:read",
+                "#zone:edit"
+              ],
+              "plan": {
+                "id": "e592fd9519420ba7405e1307bff33214",
+                "name": "Pro Plan",
+                "price": 20,
+                "currency": "USD",
+                "frequency": "monthly",
+                "legacy_id": "pro",
+                "is_subscribed": true,
+                "can_subscribe": true
+              },
+              "plan_pending": {
+                "id": "e592fd9519420ba7405e1307bff33214",
+                "name": "Pro Plan",
+                "price": 20,
+                "currency": "USD",
+                "frequency": "monthly",
+                "legacy_id": "pro",
+                "is_subscribed": true,
+                "can_subscribe": true
+              },
+              "status": "active",
+              "paused": false,
+              "type": "full",
+              "name_servers": [
+                "tony.ns.cloudflare.com",
+                "woz.ns.cloudflare.com"
+              ]
+            }
+          ]
+        }
+        JSON
+
+      WebMock.stub(:get, "https://api.cloudflare.com/client/v4/zones")
+        .with(query: {"name" => "example.tld"})
+        .to_return(body: body)
+
+      client = Cryflare.new(email: "user@website.com", key: "abcdef")
+
+      client.zones.list(name: "example.tld") do |response|
+        response.success?.should be_true
+        response.result.should be_a(Array(Cryflare::Zone))
+      end
+    end
+  end
+
+  describe "#show" do
+    it "shows zone" do
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
             "id": "023e105f4ecef8ad9ca31a8372d0c353",
             "name": "example.com",
             "development_mode": 7200,
@@ -243,89 +321,11 @@ describe Cryflare::Zone::Endpoint do
               "woz.ns.cloudflare.com"
             ]
           }
-        ]
-      }
-      JSON
-
-      WebMock.stub(:get, "https://api.cloudflare.com/client/v4/zones")
-        .with(query: {"name" => "example.tld"})
-        .to_return(body_io: response_json)
-
-      client = Cryflare.new(email: "user@website.com", key: "abcdef")
-
-      client.zones.list(name: "example.tld") do |response|
-        response.success?.should be_true
-        response.result.should be_a(Array(Cryflare::Zone))
-      end
-    end
-  end
-
-  describe "#show" do
-    it "shows zone" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "023e105f4ecef8ad9ca31a8372d0c353",
-          "name": "example.com",
-          "development_mode": 7200,
-          "original_name_servers": [
-            "ns1.originaldnshost.com",
-            "ns2.originaldnshost.com"
-          ],
-          "original_registrar": "GoDaddy",
-          "original_dnshost": "NameCheap",
-          "created_on": "2014-01-01T05:20:00.12345Z",
-          "modified_on": "2014-01-01T05:20:00.12345Z",
-          "activated_on": "2014-01-02T00:01:00.12345Z",
-          "owner": {
-            "id": {},
-            "email": {},
-            "type": "user"
-          },
-          "account": {
-            "id": "01a7362d577a6c3019a474fd6f485823",
-            "name": "Demo Account"
-          },
-          "permissions": [
-            "#zone:read",
-            "#zone:edit"
-          ],
-          "plan": {
-            "id": "e592fd9519420ba7405e1307bff33214",
-            "name": "Pro Plan",
-            "price": 20,
-            "currency": "USD",
-            "frequency": "monthly",
-            "legacy_id": "pro",
-            "is_subscribed": true,
-            "can_subscribe": true
-          },
-          "plan_pending": {
-            "id": "e592fd9519420ba7405e1307bff33214",
-            "name": "Pro Plan",
-            "price": 20,
-            "currency": "USD",
-            "frequency": "monthly",
-            "legacy_id": "pro",
-            "is_subscribed": true,
-            "can_subscribe": true
-          },
-          "status": "active",
-          "paused": false,
-          "type": "full",
-          "name_servers": [
-            "tony.ns.cloudflare.com",
-            "woz.ns.cloudflare.com"
-          ]
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(:get, "https://api.cloudflare.com/client/v4/zones/a1b2c3")
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -338,21 +338,21 @@ describe Cryflare::Zone::Endpoint do
 
   describe "#check_activation" do
     it "checks zone's activation status" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "9a7806061c88ada191ed06f989cc3dac"
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "id": "9a7806061c88ada191ed06f989cc3dac"
+          }
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(
         :put,
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/activation_check"
-      ).to_return(body_io: response_json)
+      ).to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -365,23 +365,23 @@ describe Cryflare::Zone::Endpoint do
 
   describe "#purge_cache" do
     it "purges zone's cache" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "9a7806061c88ada191ed06f989cc3dac"
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "id": "9a7806061c88ada191ed06f989cc3dac"
+          }
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(
         :post,
         "https://api.cloudflare.com/client/v4/zones/a1b2c3/purge_cache"
       )
         .with(body: %({"purge_everything":true}))
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 

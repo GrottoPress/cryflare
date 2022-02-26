@@ -3,25 +3,25 @@ require "../spec_helper"
 describe Cryflare::Account::Endpoint do
   describe "#replace" do
     it "updates account" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "01a7362d577a6c3019a474fd6f485823",
-          "name": "Demo Account",
-          "settings": {
-            "enforce_twofactor": false
-          },
-          "created_on": "2014-03-01T12:21:02.0000Z"
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "id": "01a7362d577a6c3019a474fd6f485823",
+            "name": "Demo Account",
+            "settings": {
+              "enforce_twofactor": false
+            },
+            "created_on": "2014-03-01T12:21:02.0000Z"
+          }
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(:put, "https://api.cloudflare.com/client/v4/accounts/a1b2c3")
         .with(body: %({"id":"a1b2c3","name":"Demo Account"}))
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -38,27 +38,27 @@ describe Cryflare::Account::Endpoint do
 
   describe "#index" do
     it "lists accounts" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": [
-          {
-            "id": "01a7362d577a6c3019a474fd6f485823",
-            "name": "Demo Account",
-            "settings": {
-              "enforce_twofactor": false
-            },
-            "created_on": "2014-03-01T12:21:02.0000Z"
-          }
-        ]
-      }
-      JSON
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": [
+            {
+              "id": "01a7362d577a6c3019a474fd6f485823",
+              "name": "Demo Account",
+              "settings": {
+                "enforce_twofactor": false
+              },
+              "created_on": "2014-03-01T12:21:02.0000Z"
+            }
+          ]
+        }
+        JSON
 
       WebMock.stub(:get, "https://api.cloudflare.com/client/v4/accounts")
         .with(query: {"page" => "1", "per_page" => "20"})
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
@@ -71,24 +71,24 @@ describe Cryflare::Account::Endpoint do
 
   describe "#show" do
     it "shows account" do
-      response_json = IO::Memory.new <<-JSON
-      {
-        "success": true,
-        "errors": [],
-        "messages": [],
-        "result": {
-          "id": "01a7362d577a6c3019a474fd6f485823",
-          "name": "Demo Account",
-          "settings": {
-            "enforce_twofactor": false
-          },
-          "created_on": "2014-03-01T12:21:02.0000Z"
+      body = <<-JSON
+        {
+          "success": true,
+          "errors": [],
+          "messages": [],
+          "result": {
+            "id": "01a7362d577a6c3019a474fd6f485823",
+            "name": "Demo Account",
+            "settings": {
+              "enforce_twofactor": false
+            },
+            "created_on": "2014-03-01T12:21:02.0000Z"
+          }
         }
-      }
-      JSON
+        JSON
 
       WebMock.stub(:get, "https://api.cloudflare.com/client/v4/accounts/a1b2c3")
-        .to_return(body_io: response_json)
+        .to_return(body: body)
 
       client = Cryflare.new(email: "user@website.com", key: "abcdef")
 
