@@ -1,7 +1,5 @@
 struct Cryflare::Filter::Item
   include Response
 
-  struct Resource
-    getter result : Filter?
-  end
+  getter result : Filter?
 end

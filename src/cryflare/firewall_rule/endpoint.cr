@@ -7,7 +7,7 @@ struct Cryflare::FirewallRule::Endpoint
 
   def create(zone_id : String, rules : Array(NamedTuple)) : List
     response = @client.post(self.class.path(zone_id), body: rules.to_json)
-    List.new(response)
+    List.from_json(response.body)
   end
 
   def replace(zone_id : String, rules : Array(NamedTuple))
@@ -16,7 +16,7 @@ struct Cryflare::FirewallRule::Endpoint
 
   def replace(zone_id : String, rules : Array(NamedTuple)) : List
     response = @client.put(self.class.path(zone_id), body: rules.to_json)
-    List.new(response)
+    List.from_json(response.body)
   end
 
   def replace(zone_id : String, __ id : String, **params)
@@ -29,7 +29,7 @@ struct Cryflare::FirewallRule::Endpoint
       body: params.to_json
     )
 
-    Item.new(response)
+    Item.from_json(response.body)
   end
 
   def delete(zone_id : String, id : String)
@@ -38,7 +38,7 @@ struct Cryflare::FirewallRule::Endpoint
 
   def delete(zone_id : String, id : String) : Item
     response = @client.delete("#{self.class.path(zone_id)}/#{id}")
-    Item.new(response)
+    Item.from_json(response.body)
   end
 
   def list(zone_id : String, **params)
@@ -50,7 +50,7 @@ struct Cryflare::FirewallRule::Endpoint
       "#{self.class.path(zone_id)}?#{URI::Params.encode(params)}"
     )
 
-    List.new(response)
+    List.from_json(response.body)
   end
 
   def fetch(zone_id : String, id : String)
@@ -59,7 +59,7 @@ struct Cryflare::FirewallRule::Endpoint
 
   def fetch(zone_id : String, id : String) : Item
     response = @client.get("#{self.class.path(zone_id)}/#{id}")
-    Item.new(response)
+    Item.from_json(response.body)
   end
 
   def self.path(zone_id : String) : String

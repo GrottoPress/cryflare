@@ -11,7 +11,7 @@ struct Cryflare::ZoneSetting::Endpoint
       body: params.to_json
     )
 
-    List.new(response)
+    List.from_json(response.body)
   end
 
   def update(zone_id : String, id : String, **params)
@@ -24,7 +24,7 @@ struct Cryflare::ZoneSetting::Endpoint
       body: params.to_json
     )
 
-    Item.new(response)
+    Item.from_json(response.body)
   end
 
   def list(zone_id : String)
@@ -33,7 +33,7 @@ struct Cryflare::ZoneSetting::Endpoint
 
   def list(zone_id : String) : List
     response = @client.get("#{self.class.path(zone_id)}")
-    List.new(response)
+    List.from_json(response.body)
   end
 
   def fetch(zone_id : String, id : String)
@@ -42,7 +42,7 @@ struct Cryflare::ZoneSetting::Endpoint
 
   def fetch(zone_id : String, id : String) : Item
     response = @client.get("#{self.class.path(zone_id)}/#{id}")
-    Item.new(response)
+    Item.from_json(response.body)
   end
 
   def self.path(zone_id : String) : String

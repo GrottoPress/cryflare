@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 - Ensure support for *Crystal* v1.3
-- Add `Cryflare::Response#raw` to access to the raw HTTP response
 
 ## [0.5.0] - 2022-01-03
 
