@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Ensure support for *Crystal* v1.3
 
+### Changed
+- Read HTTP responses from `body` instead of `body_io` in endpoint methods
+
 ## [0.5.0] - 2022-01-03
 
 ### Added
