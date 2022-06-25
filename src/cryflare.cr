@@ -31,60 +31,60 @@ class Cryflare
     end
   end
 
-  def accounts : Account::Endpoint
-    @accounts ||= Account::Endpoint.new(self)
+  getter accounts : Account::Endpoint do
+    Account::Endpoint.new(self)
   end
 
-  def account_access_rules : AccountAccessRule::Endpoint
-    @account_access_rules ||= AccountAccessRule::Endpoint.new(self)
+  getter account_access_rules : AccountAccessRule::Endpoint do
+    AccountAccessRule::Endpoint.new(self)
   end
 
-  def account_members : AccountMember::Endpoint
-    @account_members ||= AccountMember::Endpoint.new(self)
+  getter account_members : AccountMember::Endpoint do
+    AccountMember::Endpoint.new(self)
   end
 
-  def account_roles : AccountRole::Endpoint
-    @account_roles ||= AccountRole::Endpoint.new(self)
+  getter account_roles : AccountRole::Endpoint do
+    AccountRole::Endpoint.new(self)
   end
 
-  def cloudflare_ips : CloudflareIp::Endpoint
-    @cloudflare_ips ||= CloudflareIp::Endpoint.new(self)
+  getter cloudflare_ips : CloudflareIp::Endpoint do
+    CloudflareIp::Endpoint.new(self)
   end
 
-  def dns_records : DnsRecord::Endpoint
-    @dns_records ||= DnsRecord::Endpoint.new(self)
+  getter dns_records : DnsRecord::Endpoint do
+    DnsRecord::Endpoint.new(self)
   end
 
-  def filters : Filter::Endpoint
-    @filters ||= Filter::Endpoint.new(self)
+  getter filters : Filter::Endpoint do
+    Filter::Endpoint.new(self)
   end
 
-  def firewall_rules : FirewallRule::Endpoint
-    @firewall_rules ||= FirewallRule::Endpoint.new(self)
+  getter firewall_rules : FirewallRule::Endpoint do
+    FirewallRule::Endpoint.new(self)
   end
 
-  def user : User::Endpoint
-    @user ||= User::Endpoint.new(self)
+  getter user : User::Endpoint do
+    User::Endpoint.new(self)
   end
 
-  def user_access_rules : UserAccessRule::Endpoint
-    @user_access_rules ||= UserAccessRule::Endpoint.new(self)
+  getter user_access_rules : UserAccessRule::Endpoint do
+    UserAccessRule::Endpoint.new(self)
   end
 
-  def user_organizations : UserOrganization::Endpoint
-    @user_organizations ||= UserOrganization::Endpoint.new(self)
+  getter user_organizations : UserOrganization::Endpoint do
+    UserOrganization::Endpoint.new(self)
   end
 
-  def zones : Zone::Endpoint
-    @zones ||= Zone::Endpoint.new(self)
+  getter zones : Zone::Endpoint do
+    Zone::Endpoint.new(self)
   end
 
-  def zone_access_rules : ZoneAccessRule::Endpoint
-    @zone_access_rules ||= ZoneAccessRule::Endpoint.new(self)
+  getter zone_access_rules : ZoneAccessRule::Endpoint do
+    ZoneAccessRule::Endpoint.new(self)
   end
 
-  def zone_settings : ZoneSetting::Endpoint
-    @zone_settings ||= ZoneSetting::Endpoint.new(self)
+  getter zone_settings : ZoneSetting::Endpoint do
+    ZoneSetting::Endpoint.new(self)
   end
 
   def self.path : String
