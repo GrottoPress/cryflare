@@ -1,5 +1,5 @@
 struct Cryflare::CloudflareIp
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter ipv4_cidrs : Array(String)
   getter ipv6_cidrs : Array(String)

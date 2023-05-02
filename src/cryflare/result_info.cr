@@ -1,5 +1,5 @@
 struct Cryflare::ResultInfo
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter page : Int32
   getter per_page : Int32

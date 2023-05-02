@@ -1,5 +1,5 @@
 struct Cryflare::Zone
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Status
     Active

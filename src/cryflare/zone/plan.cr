@@ -1,5 +1,5 @@
 struct Cryflare::Zone::Plan
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Frequency
     None

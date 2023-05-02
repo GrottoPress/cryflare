@@ -1,5 +1,5 @@
 struct Cryflare::AccountRole
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter id : String
   getter name : String

@@ -1,5 +1,5 @@
 struct Cryflare::AccountMember::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def create(account_id : String, **params)
     yield create(account_id, **params)

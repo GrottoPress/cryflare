@@ -1,5 +1,5 @@
 struct Cryflare::Account::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def replace(__ id : String, **params)
     yield replace(id, **params)

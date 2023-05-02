@@ -1,5 +1,5 @@
 struct Cryflare::Filter::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def create(zone_id : String, filters : Array(NamedTuple))
     yield create(zone_id, filters)

@@ -1,8 +1,8 @@
 struct Cryflare::AccountRole::Permissions
-  include Hapi::Resource
+  include Cryflare::Resource
 
   struct Values
-    include Hapi::Resource
+    include Cryflare::Resource
 
     getter? read : Bool
     getter? write : Bool

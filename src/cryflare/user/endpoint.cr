@@ -1,5 +1,5 @@
 struct Cryflare::User::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def update(**params)
     yield update(**params)

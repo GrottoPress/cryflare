@@ -8,11 +8,6 @@ authors:
 
 crystal: ~> 1.0
 
-dependencies:
-  hapi:
-    github: GrottoPress/hapi
-    version: ~> 0.2.1
-
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba

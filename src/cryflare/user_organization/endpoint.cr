@@ -1,5 +1,5 @@
 struct Cryflare::UserOrganization::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def delete(id : String)
     yield delete(id)

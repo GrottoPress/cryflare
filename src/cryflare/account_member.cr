@@ -1,5 +1,5 @@
 struct Cryflare::AccountMember
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Status
     Accepted

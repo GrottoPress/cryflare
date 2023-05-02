@@ -1,5 +1,5 @@
 struct Cryflare::FirewallRule::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def create(zone_id : String, rules : Array(NamedTuple))
     yield create(zone_id, rules)

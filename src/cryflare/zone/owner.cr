@@ -1,5 +1,5 @@
 struct Cryflare::Zone::Owner
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Type
     User

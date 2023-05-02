@@ -1,35 +1,27 @@
-require "hapi"
+require "json"
 
 require "./cryflare/version"
+require "./cryflare/endpoint"
+require "./cryflare/resource"
 require "./cryflare/**"
 
 class Cryflare
-  include Hapi::Client
-
   def initialize(*, token : String)
-    initialize
-
-    http_client.before_request do |request|
-      request.headers["Authorization"] = "Bearer #{token}"
-    end
+    set_headers
+    authenticate(token: token)
   end
 
   def initialize(*, key : String)
-    initialize
-
-    http_client.before_request do |request|
-      request.headers["X-Auth-User-Service-Key"] = key
-    end
+    set_headers
+    authenticate(key: key)
   end
 
   def initialize(*, email : String, key : String)
-    initialize
-
-    http_client.before_request do |request|
-      request.headers["X-Auth-Email"] = email
-      request.headers["X-Auth-Key"] = key
-    end
+    set_headers
+    authenticate(email, key)
   end
+
+  forward_missing_to http_client
 
   getter accounts : Account::Endpoint do
     Account::Endpoint.new(self)
@@ -95,10 +87,33 @@ class Cryflare
     URI.parse("https://api.cloudflare.com#{path}")
   end
 
-  private def initialize
+  private def http_client : HTTP::Client
+    @http_client ||= HTTP::Client.new(self.class.uri)
+  end
+
+  private def set_headers
     http_client.before_request do |request|
       set_content_type(request.headers)
       set_user_agent(request.headers)
+    end
+  end
+
+  private def authenticate(*, token : String)
+    http_client.before_request do |request|
+      request.headers["Authorization"] = "Bearer #{token}"
+    end
+  end
+
+  private def authenticate(*, key : String)
+    http_client.before_request do |request|
+      request.headers["X-Auth-User-Service-Key"] = key
+    end
+  end
+
+  private def authenticate(email : String, key : String)
+    http_client.before_request do |request|
+      request.headers["X-Auth-Email"] = email
+      request.headers["X-Auth-Key"] = key
     end
   end
 

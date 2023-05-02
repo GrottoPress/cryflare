@@ -1,5 +1,5 @@
 struct Cryflare::UserOrganization
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Status
     Member

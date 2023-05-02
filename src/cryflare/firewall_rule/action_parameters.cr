@@ -1,11 +1,11 @@
 struct Cryflare::FirewallRule::ActionParameters
-  include Hapi::Resource
+  include Cryflare::Resource
 
   struct Uri
-    include Hapi::Resource
+    include Cryflare::Resource
 
     struct Values
-      include Hapi::Resource
+      include Cryflare::Resource
 
       getter value : String
     end

@@ -1,5 +1,5 @@
 struct Cryflare::Account::Settings
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter? enforce_twofactor : Bool
 end

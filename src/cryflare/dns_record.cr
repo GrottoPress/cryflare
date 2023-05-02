@@ -1,5 +1,5 @@
 struct Cryflare::DnsRecord
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Type
     A

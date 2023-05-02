@@ -2,7 +2,7 @@ struct Cryflare::ZoneAccessRule
   include AccessRule::Common
 
   struct Scope
-    include Hapi::Resource
+    include Cryflare::Resource
 
     enum Type
       User

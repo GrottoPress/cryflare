@@ -1,5 +1,5 @@
 struct Cryflare::ZoneSetting
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter? editable : Bool
   getter id : String

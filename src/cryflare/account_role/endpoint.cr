@@ -1,5 +1,5 @@
 struct Cryflare::AccountRole::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def list(account_id : String)
     yield list(account_id)

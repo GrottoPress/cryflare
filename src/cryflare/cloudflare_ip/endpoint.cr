@@ -1,5 +1,5 @@
 struct Cryflare::CloudflareIp::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def fetch
     yield fetch

@@ -1,5 +1,5 @@
 struct Cryflare::User
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter betas : Array(String)?
   getter created_on : Time?

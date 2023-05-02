@@ -1,5 +1,5 @@
 struct Cryflare::Filter
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter description : String
   getter expression : String

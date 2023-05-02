@@ -1,5 +1,5 @@
 struct Cryflare::Zone::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def create(**params)
     yield create(**params)

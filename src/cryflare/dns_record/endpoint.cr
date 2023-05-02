@@ -2,7 +2,7 @@
 # - `#import`
 # - `#export`
 struct Cryflare::DnsRecord::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def create(zone_id : String, **params)
     yield create(zone_id, **params)

@@ -1,5 +1,5 @@
 struct Cryflare::ZoneSetting::Endpoint
-  include Hapi::Endpoint
+  include Cryflare::Endpoint
 
   def update(zone_id : String, **params)
     yield update(zone_id, **params)

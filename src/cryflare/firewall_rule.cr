@@ -1,5 +1,5 @@
 struct Cryflare::FirewallRule
-  include Hapi::Resource
+  include Cryflare::Resource
 
   enum Action
     Block

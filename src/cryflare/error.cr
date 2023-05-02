@@ -1,5 +1,5 @@
 struct Cryflare::Error
-  include Hapi::Resource
+  include Cryflare::Resource
 
   getter code : Int32
   getter message : String

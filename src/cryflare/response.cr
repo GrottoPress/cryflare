@@ -1,6 +1,6 @@
 module Cryflare::Response
   macro included
-    include Hapi::Resource
+    include Cryflare::Resource
 
     getter errors : Array(Error)
     getter messages : Array(String)
