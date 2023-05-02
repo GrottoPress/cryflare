@@ -1,5 +1,5 @@
 name: cryflare
-version: 0.5.1
+version: 0.6.0
 description: A low-level API client for Cloudflare® v4
 
 authors:
