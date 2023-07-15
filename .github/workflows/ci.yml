@@ -55,7 +55,7 @@ jobs:
           key: ${{ runner.os }}-shards-${{ hashFiles('shard.yml') }}
           restore-keys: ${{ runner.os }}-shards-
       - name: Install shards
-        run: shards update --skip-postinstall --skip-executables
+        run: shards update
       - name: Run tests
         env:
           CLOUDFLARE_TOKEN: ${{ secrets.CRYFLARE_SPEC_TOKEN }}
