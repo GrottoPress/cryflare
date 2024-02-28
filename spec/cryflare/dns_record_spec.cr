@@ -23,8 +23,9 @@ describe Cryflare::DnsRecord::Endpoint do
             "modified_on": "2014-01-01T05:20:00.12345Z",
             "data": {},
             "meta": {
-              "auto_added": true,
-              "source": "primary"
+              "auto_added": false,
+              "managed_by_apps": false,
+              "managed_by_argo_tunnel": false
             }
           }
         }
