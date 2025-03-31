@@ -6,7 +6,7 @@ require "./cryflare/endpoint"
 require "./cryflare/resource"
 require "./cryflare/**"
 
-class Cryflare
+struct Cryflare
   def initialize(*, token : String)
     set_headers
     authenticate(token: token)
@@ -24,59 +24,59 @@ class Cryflare
 
   forward_missing_to http_client
 
-  getter accounts : Account::Endpoint do
+  def accounts : Account::Endpoint
     Account::Endpoint.new(self)
   end
 
-  getter account_access_rules : AccountAccessRule::Endpoint do
+  def account_access_rules : AccountAccessRule::Endpoint
     AccountAccessRule::Endpoint.new(self)
   end
 
-  getter account_members : AccountMember::Endpoint do
+  def account_members : AccountMember::Endpoint
     AccountMember::Endpoint.new(self)
   end
 
-  getter account_roles : AccountRole::Endpoint do
+  def account_roles : AccountRole::Endpoint
     AccountRole::Endpoint.new(self)
   end
 
-  getter cloudflare_ips : CloudflareIp::Endpoint do
+  def cloudflare_ips : CloudflareIp::Endpoint
     CloudflareIp::Endpoint.new(self)
   end
 
-  getter dns_records : DnsRecord::Endpoint do
+  def dns_records : DnsRecord::Endpoint
     DnsRecord::Endpoint.new(self)
   end
 
-  getter filters : Filter::Endpoint do
+  def filters : Filter::Endpoint
     Filter::Endpoint.new(self)
   end
 
-  getter firewall_rules : FirewallRule::Endpoint do
+  def firewall_rules : FirewallRule::Endpoint
     FirewallRule::Endpoint.new(self)
   end
 
-  getter user : User::Endpoint do
+  def user : User::Endpoint
     User::Endpoint.new(self)
   end
 
-  getter user_access_rules : UserAccessRule::Endpoint do
+  def user_access_rules : UserAccessRule::Endpoint
     UserAccessRule::Endpoint.new(self)
   end
 
-  getter user_organizations : UserOrganization::Endpoint do
+  def user_organizations : UserOrganization::Endpoint
     UserOrganization::Endpoint.new(self)
   end
 
-  getter zones : Zone::Endpoint do
+  def zones : Zone::Endpoint
     Zone::Endpoint.new(self)
   end
 
-  getter zone_access_rules : ZoneAccessRule::Endpoint do
+  def zone_access_rules : ZoneAccessRule::Endpoint
     ZoneAccessRule::Endpoint.new(self)
   end
 
-  getter zone_settings : ZoneSetting::Endpoint do
+  def zone_settings : ZoneSetting::Endpoint
     ZoneSetting::Endpoint.new(self)
   end
 
