@@ -7,6 +7,8 @@ require "./cryflare/resource"
 require "./cryflare/**"
 
 struct Cryflare
+  @@http_client = HTTP::Client.new(uri)
+
   def initialize(*, token : String)
     set_headers
     authenticate(token: token)
@@ -22,7 +24,7 @@ struct Cryflare
     authenticate(email, key)
   end
 
-  forward_missing_to http_client
+  forward_missing_to @@http_client
 
   def accounts : Account::Endpoint
     Account::Endpoint.new(self)
@@ -88,31 +90,27 @@ struct Cryflare
     URI.parse("https://api.cloudflare.com#{path}")
   end
 
-  private def http_client : HTTP::Client
-    @http_client ||= HTTP::Client.new(self.class.uri)
-  end
-
   private def set_headers
-    http_client.before_request do |request|
+    @@http_client.before_request do |request|
       set_content_type(request.headers)
       set_user_agent(request.headers)
     end
   end
 
   private def authenticate(*, token : String)
-    http_client.before_request do |request|
+    @@http_client.before_request do |request|
       request.headers["Authorization"] = "Bearer #{token}"
     end
   end
 
   private def authenticate(*, key : String)
-    http_client.before_request do |request|
+    @@http_client.before_request do |request|
       request.headers["X-Auth-User-Service-Key"] = key
     end
   end
 
   private def authenticate(email : String, key : String)
-    http_client.before_request do |request|
+    @@http_client.before_request do |request|
       request.headers["X-Auth-Email"] = email
       request.headers["X-Auth-Key"] = key
     end
