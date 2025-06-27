@@ -6,4 +6,5 @@
 *.dwarf
 .env*
 /.*-version*
+/forge.yaml
 /shard.lock
